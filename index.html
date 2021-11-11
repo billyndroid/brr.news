@@ -4,56 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="styles/style.css" rel="stylesheet"/>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Major+Mono+Display&family=Poppins:wght@100;300&display=swap" rel="stylesheet">
     <title>Inflation News</title>
 </head>
 <body>
-    <main id="main">
+    <!--Header -w/logo, search bar, and burger navmenu that opens sidebar - and also Main Heading Section-->
+    <section>
         <header>
-            <nav id="navbar">
-                <ul>
-                    <li>
-                        <a href="#section_one">One</a>
-                    </li>
-                </ul>
-            </nav>
-            <title id="title">Brr.News</title>
-            <img id="image_one" href="assets/untitled.jpg"/>
+            <div id="header-container">                         
+                <div id="nav-container">
+                    <img id="logo" src="/assets/logo.png" alt="logo" width="100" height="100">
+                    <nav>
+                        <ul>
+                            <li><a href=""></a>Home</li>
+                            <li><a href=""></a>About</li>
+                            <li><a href=""></a>Rates</li>
+                            <li><a href=""></a>Charts</li>
+                        </ul>                  
+                    </nav>
+                </div>
+                <h1>Brr News - Money Printrr Go Brr</h1>  
+            </div>
         </header>
-        <h1>Brr.News</h1>
-        <h2>Inflation News Daily</h2>
-        <a href="http://statbureau/en/united-states/monthly-inflation-comparison-current-previous-years-mom.png?width=500&height=250&chartType=Column&showTitle=True"></a>
-    </main>
-    <script src="scripts/main.js"
-    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    </section>
+<main>
+    <section>
+        <h2>US</h2>
+        <div class="card">
+            <img src="img_avatar.png" alt="Avatar" style="width:100px">
+                <div class="card-container">
+                    <h3><b>United States</b></h3> 
+                        <p>Inflation Rates</p> 
+                </div>
+</div>
 
-Start Month:<input type='text' value='2012/1/1' id='startDate'/>
-<br />
-End Month:<input type='text' value='2012/12/1' id='endDate'/>
-<br />
-Start Price:<input type='text' value='100' id='startPrice' />
-<br />
-<button id='calc'>Calculate</button>
-<br />
-End Price:<input type='text' value=''  id='endPrice'/>
-<br />
-<a href="www.statbureau.org">www.statbureau.org</a>
 
-<script type="text/javascript">
-    var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
-
-    $('#calc').on('click', function calculate() {
-        $.getJSON(apiUrl, {
-            country: 'united-states',
-            start: $('#startDate').val(),
-            end: $('#endDate').val(),
-            amount: $('#startPrice').val(),
-            format: true
-        })
-          .done(function (data) {
-              $('#endPrice').val(data);
-          });
-    });
-</script>
+    </section>
+</main>
+    <section>
+        <Footer>
+            <div id="footer-container">
+                <a href = "https://www.statbureau.org" >www.statbureau.org</a>
+            </div>
+        </Footer>
+    </section>
+    <script src="/scripts/main.js"></script>
 </body>
 </html>

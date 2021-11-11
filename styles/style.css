@@ -1,18 +1,74 @@
 html {
-    background-color: aqua;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    ackground-repeat: no-repeat;
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+    font-family: 'Poppins', sans-serif;
+    width: auto;
+    height: 100%;
+    display: grid;
+    color: rgb(255, 255, 255);
 }
 body {
-
+    margin: 0;
+    padding: 0;
 }
+/* Header section*/
 header {
-    background-color: rgb(0, 75, 75);
+    background-color:rgba(2,0,36,1);
+    margin: 0;
+    padding: 0;
+    display: grid;
 }
-#main {
+/* Header section - Navbar & Logo*/
+#nav-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 20px;
+    margin: 20px;
+}
+/* Header section - Logo*/
+#logo {
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+/* Header section - Navbar*/
+li {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    list-style: none;
+    display: inline-block;
+}
+/* Header section - Navbar Ends*/
+/* Header section - Main Title (may move later)*/
 
-}
-#navbar {
 
+h1 {
+    font-size: 200px;
+    padding: 10px;
+    font-family: 'Major Mono Display', monospace;
 }
-#image_one {
-
-}
+/* Section One - Inflation Numbers by Country*/
+/* Section One - Part One, two, three, four - Cards*/
+.card {
+    
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .card-container {
+    padding: 2px 16px;
+    margin: 20px;
+    background-color: whitesmoke;
+  }
