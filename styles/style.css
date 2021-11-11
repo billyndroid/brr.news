@@ -15,6 +15,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    z-index: 1;
 }
 /* Header section*/
 header {
@@ -26,8 +27,6 @@ header {
 /* Header section - Navbar & Logo*/
 #nav-container {
     display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
     padding: 0px;
     margin: 0px;
     gap: 50px;
@@ -42,10 +41,16 @@ header {
     align-self: flex-start;
 }
 /* Header section - Navbar*/
+ul {
+    display: flex;
+}
 li {
     font-weight: 200;
     list-style: none;
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vw;
 }
 /* Header section - Navbar Ends*/
 /* Header section - Main Title (may move later)*/
@@ -57,28 +62,33 @@ li {
     width: 100%;
 }
 h1 {
-    font-size: 10vw;
+    font-size: 15vw;
+    font-family: paralucent-text, sans-serif;
+    font-weight: 400;
+    font-style: normal;
     text-align: center;
     align-items: center;
     padding: 0px;
-    font-family: 'Major Mono Display', monospace;
     margin: 0;
 }
 h2 {
+    
+    font-weight: 200;
+    font-style: normal;
     text-align: center;
-    font-size: 7vw;
+    font-size: 5vw;
     color:rgb(228, 228, 228);
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
-    margin-bottom: 200px;
+    margin-bottom: 6.75vw;
 }
 /* Section One - Inflation Numbers by Country*/
 /* Section One - Part One, two, three, four - Cards*/
+
 .card-container {
     display: flex;
     gap: 25px;
     margin-left: 25px;
     margin-right: 25px;
-   
 }
 
 .card {
@@ -113,15 +123,14 @@ h2 {
 h3 {
     text-align: center;
     color:rgb(228, 228, 228);
-    line-height: 150px;
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
     justify-content: center;
     align-items: center;
 }
 h4 {
     text-align: center;
+    font-size: 1vw;
     color:rgb(228, 228, 228);
-    line-height: 150px;
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
     justify-content: center;
     align-items: center;
@@ -129,10 +138,13 @@ h4 {
 p {
     color:rgb(228, 228, 228);
     text-align: center;
+    margin: 0;
+    padding: 20px;
+    z-index: 5;
 }
 h3 {
     text-align: center;
-    font-size: 5vw;
+    font-size: 4vw;
     color:rgb(228, 228, 228);
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
 }
@@ -141,6 +153,42 @@ h6 {
     text-align: center;
 }
 /* temp class to control cards until get flexbox working properly and resizing cards to fit width of vw*/
-.card-img {
-    width: 100px;
+
+footer {
+    background-color:rgba(2,0,36,1) ;
+    text-align: center;
 }
+/*fomts from Adobe
+Paralucent Light Italic
+font-family: paralucent, sans-serif;
+font-weight: 300;
+font-style: italic;
+Paralucent Extra Light Italic
+font-family: paralucent, sans-serif;
+font-weight: 200;
+font-style: italic;
+Paralucent Medium Italic
+font-family: paralucent, sans-serif;
+font-weight: 500;
+font-style: italic;
+Paralucent Light
+font-family: paralucent, sans-serif;
+font-weight: 300;
+font-style: normal;
+Paralucent Extra Light
+font-family: paralucent, sans-serif;
+font-weight: 200;
+font-style: normal;
+Paralucent Medium
+font-family: paralucent, sans-serif;
+font-weight: 500;
+font-style: normal;
+Paralucent Text Book Italic
+font-family: paralucent-text, sans-serif;
+font-weight: 400;
+font-style: italic;
+Paralucent Text Book
+font-family: paralucent-text, sans-serif;
+font-weight: 400;
+font-style: normal;
+*/
