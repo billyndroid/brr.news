@@ -3,13 +3,13 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    ackground-repeat: no-repeat;
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+    background-repeat: no-repeat;
+    background:  rgba(0,212,255,1);
     font-family: 'Poppins', sans-serif;
     width: auto;
     height: 100%;
     display: grid;
-    color: rgb(255, 255, 255);
+    color: whitesmoke;
 }
 body {
     margin: 0;
@@ -20,23 +20,25 @@ header {
     background-color:rgba(2,0,36,1);
     margin: 0;
     padding: 0;
-    display: grid;
+    display: flex;
 }
 /* Header section - Navbar & Logo*/
 #nav-container {
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
-    padding: 20px;
-    margin: 20px;
+    padding: 0px;
+    margin: 0px;
+    gap: 50px;
 }
 /* Header section - Logo*/
 #logo {
-    padding: 10px;
-    margin: 20px;
+    padding: 0px;
+    margin: 10px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
+    align-self: flex-start;
 }
 /* Header section - Navbar*/
 li {
@@ -51,24 +53,73 @@ li {
 
 h1 {
     font-size: 200px;
-    padding: 10px;
+    text-align: center;
+    padding: 0px;
     font-family: 'Major Mono Display', monospace;
+    line-height: 5px;
+    font-kerning: 15px  ;
+}
+h2 {
+    text-align: center;
+    font-size: 155px;
+    color:rgb(228, 228, 228);
+    line-height: 150px;
+    font-size: 70px;
+    text-shadow: 1px 1px 5px rgb(180, 180, 180);
+    justify-content: center;
+    align-items: center;
 }
 /* Section One - Inflation Numbers by Country*/
 /* Section One - Part One, two, three, four - Cards*/
+.card-container {
+    display: flex;
+}
+
 .card {
-    
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 40%;
+    width: auto;
+    color:rgba(2,0,36,1);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 15vw;
+    margin-bottom: 15vw;
   }
   
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
   
-  .card-container {
+  .info-container {
     padding: 2px 16px;
     margin: 20px;
-    background-color: whitesmoke;
+    
   }
+#card-img {
+    justify-content: center;
+    align-items: center;
+}
+h3 {
+    text-align: center;
+    color:rgb(228, 228, 228);
+    line-height: 150px;
+    text-shadow: 1px 1px 5px rgb(180, 180, 180);
+    justify-content: center;
+    align-items: center;
+}
+h4 {
+    text-align: center;
+    color:rgb(228, 228, 228);
+    line-height: 150px;
+    text-shadow: 1px 1px 5px rgb(180, 180, 180);
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+p {
+    color:rgb(228, 228, 228);
+    text-align: center;
+}
