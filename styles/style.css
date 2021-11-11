@@ -10,6 +10,7 @@ html {
     height: 100%;
     display: flex;
     color: whitesmoke;
+    scroll-behavior: smooth;
 }
 body {
     margin: 0;
@@ -65,18 +66,19 @@ h1 {
 }
 h2 {
     text-align: center;
-    font-size: 8vw;
+    font-size: 7vw;
     color:rgb(228, 228, 228);
-    font-size: 70px;
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
-    justify-content: center;
-    align-items: center;
     margin-bottom: 200px;
 }
 /* Section One - Inflation Numbers by Country*/
 /* Section One - Part One, two, three, four - Cards*/
 .card-container {
     display: flex;
+    gap: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+   
 }
 
 .card {
@@ -91,6 +93,8 @@ h2 {
     align-items: center;
     margin-top: 3vw;
     margin-bottom: 3vw;
+    width: auto;
+   
   }
   
   .card:hover {
@@ -121,9 +125,22 @@ h4 {
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
     justify-content: center;
     align-items: center;
-    font-size: 35px;
 }
 p {
     color:rgb(228, 228, 228);
     text-align: center;
+}
+h3 {
+    text-align: center;
+    font-size: 5vw;
+    color:rgb(228, 228, 228);
+    text-shadow: 1px 1px 5px rgb(180, 180, 180);
+}
+h6 {
+    color:rgb(228, 228, 228);
+    text-align: center;
+}
+/* temp class to control cards until get flexbox working properly and resizing cards to fit width of vw*/
+.card-img {
+    width: 100px;
 }
