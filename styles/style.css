@@ -50,25 +50,28 @@ li {
 /* Header section - Main Title (may move later)*/
 #titles {
     background-color:rgba(2,0,36,1);
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
     width: 100%;
 }
-
 h1 {
     font-size: 10vw;
     text-align: center;
     align-items: center;
     padding: 0px;
     font-family: 'Major Mono Display', monospace;
+    margin: 0;
 }
 h2 {
     text-align: center;
-    font-size: 155px;
+    font-size: 8vw;
     color:rgb(228, 228, 228);
     font-size: 70px;
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
     justify-content: center;
     align-items: center;
+    margin-bottom: 200px;
 }
 /* Section One - Inflation Numbers by Country*/
 /* Section One - Part One, two, three, four - Cards*/
