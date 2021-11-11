@@ -8,7 +8,7 @@ html {
     font-family: 'Poppins', sans-serif;
     width: auto;
     height: 100%;
-    display: grid;
+    display: flex;
     color: whitesmoke;
 }
 body {
@@ -42,28 +42,29 @@ header {
 }
 /* Header section - Navbar*/
 li {
-    font-family: 'Poppins', sans-serif;
     font-weight: 200;
     list-style: none;
     display: inline-block;
 }
 /* Header section - Navbar Ends*/
 /* Header section - Main Title (may move later)*/
-
+#titles {
+    background-color:rgba(2,0,36,1);
+    display: inline-block;
+    width: 100%;
+}
 
 h1 {
-    font-size: 200px;
+    font-size: 10vw;
     text-align: center;
+    align-items: center;
     padding: 0px;
     font-family: 'Major Mono Display', monospace;
-    line-height: 5px;
-    font-kerning: 15px  ;
 }
 h2 {
     text-align: center;
     font-size: 155px;
     color:rgb(228, 228, 228);
-    line-height: 150px;
     font-size: 70px;
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
     justify-content: center;
@@ -85,8 +86,8 @@ h2 {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 15vw;
-    margin-bottom: 15vw;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
   }
   
   .card:hover {
@@ -98,9 +99,9 @@ h2 {
     margin: 20px;
     
   }
-#card-img {
-    justify-content: center;
+.card-content {
     align-items: center;
+    justify-content: space-around;
 }
 h3 {
     text-align: center;
@@ -117,7 +118,7 @@ h4 {
     text-shadow: 1px 1px 5px rgb(180, 180, 180);
     justify-content: center;
     align-items: center;
-    font-size: large;
+    font-size: 35px;
 }
 p {
     color:rgb(228, 228, 228);
