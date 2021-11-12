@@ -22,6 +22,12 @@
                             <li><a href=""></a>About</li>
                             <li><a href=""></a>Rates</li>
                             <li><a href=""></a>Charts</li>
+                        <div class="search-container">
+                            <form action="/action_page.php">
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
                         </ul>                  
                     </nav>
                 </div>
@@ -39,12 +45,25 @@
 <main>
         <!--Inflation Rate Section-->
     <section id="inflation">
+        <div class="block-container">
         <h3 id="heading2">Inflation Rate Dashboard</h3>
                 <h4>Click the Cards below for more information</h4>
-            <div class="p-container">
-                <p>Modern Monetary theory suggests... The IMF have indicated a 'great reset'. Twitter/Square CEO, Jack was critisized recently for suggesting that we may see hyperinflation as a result of quantitative easing - when a central bank prints more money to inject into the system and prevent recession. There are many questions over whether or not this is a solution. </p>
+                <div class="square-wrapper">
+                    <div class="square square-transition"></div>
+                  </div>
+                <div class="p-container">
+                <p>Modern Monetary theory suggests... The IMF have indicated a 'great reset'.  There are many questions over whether or not this is a solution.</p>
             </div>
-            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Hyperinflation is going to change everything. It’s happening.</p>&mdash; jack⚡️ (@jack) <a href="https://twitter.com/jack/status/1451733913961783299?ref_src=twsrc%5Etfw">October 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>   
+            <div class="p-container-slower"">
+                <p>Twitter/Square CEO, Jack was critisized recently for suggesting that we may see hyperinflation as a result of quantitative easing - when a central bank prints more money to inject into the system and prevent recession.</p>
+            </div>
+            <div class="p-container-slowest">
+                <p>There are many questions over whether or not this is a solution.</p>
+            </div>
+            <div class="jack-tweet">
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Hyperinflation is going to change everything. It’s happening.</p>&mdash; jack⚡️ (@jack) <a href="https://twitter.com/jack/status/1451733913961783299?ref_src=twsrc%5Etfw">October 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>  
         <div class="card-container">
             <!--Card Two United Kingdom-->
             <div class="card">
@@ -106,6 +125,6 @@
             
         </Footer>
     </section>
-    <script src="/scripts/main.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
