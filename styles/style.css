@@ -446,13 +446,13 @@ footer {
       }
   }
 
-  */*Animation for when the element leaves (usually the inverse of the enter animation)*/
+  /*Animation for when the element leaves (usually the inverse of the enter animation)*/
   @keyframes leave {
       0% {
           transform: scale(1);
           border-radius: 0;
       }
-    }
+    
       50% {
           transform: scale(0.5);
           border-radius: 0;
