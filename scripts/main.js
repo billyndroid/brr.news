@@ -5,18 +5,27 @@ function myFunction() {
   }
 
 //from https://coolcssanimation.com/how-to-trigger-a-css-animation-on-scroll/
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    const square = entry.target.querySelector('.square');
 
-    if (entry.isIntersecting) {
-      square.classList.add('square-animation');
-	  return; // if we added the class, exit the function
-    }
+//from https://coolcssanimation.com/how-to-trigger-a-css-animation-on-scroll/
+const wrapper = document.getElementById("scroll-animation-wrapper");
+const className = "in-view";
 
-    // We're not intersecting, so remove the class!
-    square.classList.remove('square-animation');
-  });
-});
+wrapper.classList.remove(className);
 
-observer.observe(document.querySelector('.square-wrapper'));
+const observer = new IntersectionObserver(
+	(entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				wrapper.classList.add(className);
+				return;
+			}
+
+			wrapper.classList.remove(className);
+		});
+	},
+	{
+		threshold: 1
+	}
+);
+
+observer.observe(wrapper);

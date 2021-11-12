@@ -227,7 +227,7 @@ h4 {
       blockquote.twitter-tweet a:focus {
         text-decoration: underline;
       }
-*/*
+
   @keyframes run {
       0% {
         right: 100%;
@@ -240,7 +240,7 @@ h4 {
       }
 
   }
-*/
+
 p {
     color:rgb(228, 228, 228);
     text-align: center;
@@ -407,16 +407,96 @@ footer {
     transform: scale(1.2);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .square {
-    transition: opacity 1.5s ease, transform 1.5s ease;
-  }
-}
-
 .square-transition {
     opacity: 1;
     transform: none;
 }
+@keyframes wipe-enter {
+	0% {
+		transform: scale(0, .025);
+	}
+	50% {
+		transform: scale(1, .025);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .square {
+      animation: wipe-enter 1s infinite;
+    }
+  }
+
+
+
+/*From codepen MIT license*/
+@keyframes enter {
+      0% {
+          transform: scale(1);
+          border-radius: 100%;
+      }
+    
+      50% {
+          transform: scale(0.5);
+          border-radius: 0;
+          background: black;
+      }
+      100% {
+          transform: scale(1);
+          border-radius: 0;
+      }
+  }
+
+  */*Animation for when the element leaves (usually the inverse of the enter animation)*/
+  @keyframes leave {
+      0% {
+          transform: scale(1);
+          border-radius: 0;
+      }
+    }
+      50% {
+          transform: scale(0.5);
+          border-radius: 0;
+          background: black;
+      }
+      100% {
+          transform: scale(1);
+          border-radius: 100%;
+      }
+  }
+  
+  .element {
+     /* Base element styles (these don't change depending on the state)*/
+      width: 200px;
+      height: 200px;
+      background: magenta;
+      
+      /*If you need different styles for reduced motion, they go here.*/
+      border: 8px solid red;
+  }
+  
+  @media screen and (prefers-reduced-motion: no-preference) {
+      .element {
+         /*Define the animation properties*/
+          animation-fill-mode: forwards;
+          animation-duration: 1s;
+          animation-iteration-count: 1;
+          
+         /*Start position styles (last keyframe of this animation)*/
+          animation-name: leave;
+          
+         /*Undo or reset any styles set for reduced motion.*/
+          border: none;
+      }
+  }
+  
+  .container.in-view .element {
+      */* End position styles (last keyframe of this animation)*/
+      animation-name: enter;
+  }
+
+
+
+
 /*fomts from Adobe
 Paralucent Light Italic
 font-family: paralucent, sans-serif;
