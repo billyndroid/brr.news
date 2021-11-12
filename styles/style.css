@@ -70,7 +70,13 @@ h1 {
     align-items: center;
     padding: 0px;
     margin: 0;
+    animation: fadeIn linear 7s;
+    animation-delay: 2s;
 }
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
 h2 {
     
     font-weight: 200;
@@ -104,6 +110,7 @@ h2 {
     margin-top: 3vw;
     margin-bottom: 3vw;
     width: auto;
+    border-radius: 10px;
    
   }
   
@@ -135,12 +142,39 @@ h4 {
     justify-content: center;
     align-items: center;
 }
+.p-container {
+    display: flex;
+    justify-content: center;
+}
 p {
+    color:rgb(228, 228, 228);
+    text-align: center;
+    margin: 0;
+    padding: 50px;
+    z-index: 5;
+    font-size: 32px;
+    background: rgb(2,0,36);
+    opacity: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 66%;
+    border-radius: 10px;
+    font-family: paralucent, sans-serif;
+font-weight: 200;
+font-style: italic;
+line-height: 50px;
+}
+#p2 {
     color:rgb(228, 228, 228);
     text-align: center;
     margin: 0;
     padding: 20px;
     z-index: 5;
+    font-size: 18px;
+    background: rgb(2,0,36);
+    opacity: 50%;
+    border-radius: 10px;
 }
 h3 {
     text-align: center;
@@ -157,6 +191,14 @@ h6 {
 footer {
     background-color:rgba(2,0,36,1) ;
     text-align: center;
+}
+/* Tutorial on https://fossheim.io/writing/posts/css-text-gradient. */
+.gradient-text {
+    /* Fallback: Set a background color. */
+    color: linear-gradient(45deg, #f3ec78, #af4261);
+    
+    /* Create the gradient. */
+
 }
 /*fomts from Adobe
 Paralucent Light Italic
