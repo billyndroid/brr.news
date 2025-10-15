@@ -25,6 +25,7 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#news">News</a></li>
                         <li><a href="#debt-clocks">Debt Clocks</a></li>
+                        <li><a href="#real-wages">Real Wages</a></li>
                         <li><a href="#rates">Rates</a></li>
                         <li><a href="#charts">Charts</a></li>                        <li><a href="#about">About</a></li>
                     </ul>
@@ -225,6 +226,119 @@
                     <div class="insight-content">
                         <h4>Interest Burden</h4>
                         <p>Rising interest rates significantly increase debt servicing costs, creating fiscal pressure on governments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Real Wages Analysis Section-->
+    <section class="real-wages-section" id="real-wages">
+        <div class="content-container">
+            <header class="section-header">
+                <div class="section-icon"><i data-lucide="trending-down"></i></div>
+                <h2 class="section-title">Real Wages Analysis</h2>
+                <p class="section-subtitle">Purchasing power changes adjusted for inflation across major economies</p>
+            </header>
+            
+            <div class="wages-overview">
+                <div class="wages-stat-card">
+                    <div class="wages-flag">
+                        <i data-lucide="flag" class="country-icon us"></i>
+                    </div>
+                    <div class="wages-data">
+                        <h3>United States</h3>
+                        <div class="wages-change" id="usWagesChange">-2.3%</div>
+                        <p class="wages-period">Real wages change (YoY)</p>
+                        <div class="wages-details">
+                            <span>Nominal: +4.1% | Inflation: +6.4%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="wages-stat-card">
+                    <div class="wages-flag">
+                        <i data-lucide="flag" class="country-icon eu"></i>
+                    </div>
+                    <div class="wages-data">
+                        <h3>European Union</h3>
+                        <div class="wages-change negative" id="euWagesChange">-1.8%</div>
+                        <p class="wages-period">Real wages change (YoY)</p>
+                        <div class="wages-details">
+                            <span>Nominal: +3.7% | Inflation: +5.5%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="wages-stat-card">
+                    <div class="wages-flag">
+                        <i data-lucide="flag" class="country-icon uk"></i>
+                    </div>
+                    <div class="wages-data">
+                        <h3>United Kingdom</h3>
+                        <div class="wages-change negative" id="ukWagesChange">-3.1%</div>
+                        <p class="wages-period">Real wages change (YoY)</p>
+                        <div class="wages-details">
+                            <span>Nominal: +3.4% | Inflation: +6.5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wages-chart-container">
+                <div class="chart-header">
+                    <h3>Real Wages vs Inflation Trends (2020-2025)</h3>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" data-period="5y">5Y</button>
+                        <button class="chart-btn" data-period="3y">3Y</button>
+                        <button class="chart-btn" data-period="1y">1Y</button>
+                    </div>
+                </div>
+                <div class="wages-chart-wrapper">
+                    <canvas id="realWagesChart" width="800" height="400"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <span class="legend-color us-color"></span>
+                        <span>US Real Wages</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color eu-color"></span>
+                        <span>EU Real Wages</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color uk-color"></span>
+                        <span>UK Real Wages</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wages-insights">
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i data-lucide="dollar-sign"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h4>Purchasing Power Decline</h4>
+                        <p>Real wages have declined across all major economies as inflation outpaces nominal wage growth, reducing consumer purchasing power.</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h4>Worker Impact</h4>
+                        <p>Middle and lower-income workers face the greatest impact as essential goods price increases exceed wage adjustments.</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i data-lucide="calendar"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h4>Recovery Timeline</h4>
+                        <p>Economic forecasts suggest real wage recovery may take 18-24 months as inflation moderates and wage adjustments catch up.</p>
                     </div>
                 </div>
             </div>
@@ -758,6 +872,7 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#news">Latest News</a></li>
                     <li><a href="#debt-clocks">Debt Clocks</a></li>
+                    <li><a href="#real-wages">Real Wages</a></li>
                     <li><a href="#rates">Inflation Rates</a></li>
                     <li><a href="#charts">Economic Charts</a></li>
                     <li><a href="#about">Education Hub</a></li>

@@ -257,6 +257,64 @@ const economicData = {
             gdp: 2765000000000, // UK GDP in GBP
             lastUpdated: '2025-10-15'
         }
+    },
+    
+    // Real wages data
+    realWages: {
+        us: {
+            currentChange: -2.3, // Real wages change YoY
+            nominalGrowth: 4.1,
+            inflationRate: 6.4,
+            historical: [
+                { date: '2020-01', realWage: 100, nominal: 100, inflation: 1.4 },
+                { date: '2020-06', realWage: 102.1, nominal: 101.8, inflation: 0.6 },
+                { date: '2020-12', realWage: 103.5, nominal: 103.2, inflation: 1.2 },
+                { date: '2021-06', realWage: 101.8, nominal: 105.8, inflation: 5.4 },
+                { date: '2021-12', realWage: 98.2, nominal: 108.1, inflation: 7.0 },
+                { date: '2022-06', realWage: 94.8, nominal: 110.3, inflation: 9.1 },
+                { date: '2022-12', realWage: 96.1, nominal: 112.8, inflation: 6.5 },
+                { date: '2023-06', realWage: 97.3, nominal: 115.2, inflation: 3.2 },
+                { date: '2023-12', realWage: 98.1, nominal: 117.5, inflation: 3.1 },
+                { date: '2024-06', realWage: 97.9, nominal: 119.8, inflation: 3.3 },
+                { date: '2024-12', realWage: 97.7, nominal: 122.1, inflation: 6.4 }
+            ]
+        },
+        eu: {
+            currentChange: -1.8,
+            nominalGrowth: 3.7,
+            inflationRate: 5.5,
+            historical: [
+                { date: '2020-01', realWage: 100, nominal: 100, inflation: 1.2 },
+                { date: '2020-06', realWage: 101.8, nominal: 101.5, inflation: 0.3 },
+                { date: '2020-12', realWage: 102.9, nominal: 102.8, inflation: -0.3 },
+                { date: '2021-06', realWage: 101.5, nominal: 104.2, inflation: 1.9 },
+                { date: '2021-12', realWage: 98.9, nominal: 106.1, inflation: 5.0 },
+                { date: '2022-06', realWage: 95.2, nominal: 108.3, inflation: 8.6 },
+                { date: '2022-12', realWage: 94.8, nominal: 110.1, inflation: 9.2 },
+                { date: '2023-06', realWage: 96.8, nominal: 112.4, inflation: 5.5 },
+                { date: '2023-12', realWage: 98.2, nominal: 114.2, inflation: 2.9 },
+                { date: '2024-06', realWage: 98.9, nominal: 116.1, inflation: 2.6 },
+                { date: '2024-12', realWage: 98.2, nominal: 117.7, inflation: 5.5 }
+            ]
+        },
+        uk: {
+            currentChange: -3.1,
+            nominalGrowth: 3.4,
+            inflationRate: 6.5,
+            historical: [
+                { date: '2020-01', realWage: 100, nominal: 100, inflation: 1.8 },
+                { date: '2020-06', realWage: 101.2, nominal: 100.9, inflation: 0.6 },
+                { date: '2020-12', realWage: 102.1, nominal: 101.8, inflation: 0.5 },
+                { date: '2021-06', realWage: 99.8, nominal: 103.5, inflation: 2.5 },
+                { date: '2021-12', realWage: 96.2, nominal: 105.8, inflation: 5.4 },
+                { date: '2022-06', realWage: 91.8, nominal: 108.1, inflation: 9.4 },
+                { date: '2022-12', realWage: 90.5, nominal: 110.2, inflation: 10.7 },
+                { date: '2023-06', realWage: 93.1, nominal: 112.8, inflation: 7.9 },
+                { date: '2023-12', realWage: 95.8, nominal: 115.1, inflation: 4.0 },
+                { date: '2024-06', realWage: 96.5, nominal: 117.2, inflation: 2.0 },
+                { date: '2024-12', realWage: 96.9, nominal: 119.4, inflation: 6.5 }
+            ]
+        }
     }
 };
 
@@ -308,6 +366,7 @@ class ChartManager {
 
         // Main charts
         this.createGlobalInflationChart();
+        this.createRealWagesChart();
         this.createInterestRatesChart();
         this.createNationalDebtChart();
         this.createMoneySupplyChart();
@@ -512,6 +571,175 @@ class ChartManager {
                 }
             }
         });
+    }
+
+    // Create real wages chart
+    createRealWagesChart() {
+        const ctx = document.getElementById('realWagesChart');
+        if (!ctx) return;
+
+        const wagesData = economicData.realWages;
+        const labels = wagesData.us.historical.map(item => {
+            const date = new Date(item.date + '-01');
+            return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        });
+
+        const datasets = [
+            {
+                label: 'US Real Wages',
+                data: wagesData.us.historical.map(item => item.realWage),
+                borderColor: '#ff6b6b',
+                backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            },
+            {
+                label: 'EU Real Wages',
+                data: wagesData.eu.historical.map(item => item.realWage),
+                borderColor: '#4ecdc4',
+                backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            },
+            {
+                label: 'UK Real Wages',
+                data: wagesData.uk.historical.map(item => item.realWage),
+                borderColor: '#45b7d1',
+                backgroundColor: 'rgba(69, 183, 209, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }
+        ];
+
+        this.charts.realWagesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            color: 'white'
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: 'white',
+                        bodyColor: 'white',
+                        borderColor: '#4ecdc4',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.parsed.y.toFixed(1)}% of baseline`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time Period',
+                            color: 'white'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'white',
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Real Wages Index (2020=100)',
+                            color: 'white'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'white',
+                            callback: function(value) {
+                                return value.toFixed(0);
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+        
+        // Add event listeners for wage chart controls
+        document.querySelectorAll('.real-wages-section .chart-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Remove active class from all buttons in this section
+                document.querySelectorAll('.real-wages-section .chart-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const period = btn.getAttribute('data-period');
+                this.updateRealWagesChart(period);
+            });
+        });
+    }
+
+    // Update real wages chart based on period
+    updateRealWagesChart(period) {
+        const chart = this.charts.realWagesChart;
+        if (!chart) return;
+
+        const wagesData = economicData.realWages;
+        let filteredData;
+
+        switch(period) {
+            case '1y':
+                filteredData = wagesData.us.historical.slice(-12);
+                break;
+            case '3y':
+                filteredData = wagesData.us.historical.slice(-36);
+                break;
+            case '5y':
+            default:
+                filteredData = wagesData.us.historical;
+                break;
+        }
+
+        const labels = filteredData.map(item => {
+            const date = new Date(item.date + '-01');
+            return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        });
+
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = wagesData.us.historical.slice(-filteredData.length).map(item => item.realWage);
+        chart.data.datasets[1].data = wagesData.eu.historical.slice(-filteredData.length).map(item => item.realWage);
+        chart.data.datasets[2].data = wagesData.uk.historical.slice(-filteredData.length).map(item => item.realWage);
+        
+        chart.update('active');
     }
 
     // Update chart time period
