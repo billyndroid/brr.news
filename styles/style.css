@@ -783,6 +783,82 @@ i[data-lucide] {
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+
+/* Enhanced styling for Modern Monetary Theory paragraph */
+.modern-monetary-theory-text {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    padding: 2.5rem !important;
+    margin: 2rem auto !important;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    position: relative;
+}
+
+.modern-monetary-theory-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+                rgba(0, 212, 255, 0.05) 0%, 
+                rgba(2, 0, 36, 0.05) 100%);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.modern-monetary-theory-text:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Enhanced styling for Inflation Dashboard title */
+.inflation-dashboard-title {
+    text-align: center;
+    margin: 3rem auto 2.5rem auto !important;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 25px;
+    color: var(--text-light);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    max-width: 600px;
+    transition: all 0.3s ease;
+}
+
+.inflation-dashboard-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+                rgba(0, 212, 255, 0.08) 0%,
+                rgba(2, 0, 36, 0.08) 100%);
+    border-radius: 25px;
+    pointer-events: none;
+}
+
+.inflation-dashboard-title:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.4);
+}
 /* Charts Section */
 .charts-section {
     padding: 4rem 0;
