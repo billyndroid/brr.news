@@ -227,6 +227,157 @@
         </div>
     </section>
     
+    <!--Real-Time Debt Clock Section-->
+    <section class="debt-clock-section" id="debt-clocks">
+        <div class="content-container">
+            <header class="section-header">
+                <div class="section-icon"><i data-lucide="timer"></i></div>
+                <h2 class="section-title">Global Debt Clocks</h2>
+                <p class="section-subtitle">Real-time tracking of national debt levels worldwide</p>
+            </header>
+            
+            <div class="debt-clocks-grid">
+                <div class="debt-clock-container">
+                    <div class="debt-clock-header">
+                        <div class="debt-flag-large">
+                            <i data-lucide="globe" class="world-icon"></i>
+                        </div>
+                        <h3 class="debt-clock-title">Global Debt</h3>
+                        <p class="debt-clock-subtitle">Combined major economies</p>
+                    </div>
+                    <div class="debt-clock-display">
+                        <div class="debt-amount-container">
+                            <span class="debt-currency">$</span>
+                            <span class="debt-amount" id="globalDebtAmount">307,000,000,000,000</span>
+                        </div>
+                        <div class="debt-stats">
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">Per Second</span>
+                                <span class="debt-stat-value" id="globalDebtPerSecond">+$975,232</span>
+                            </div>
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">Per Capita</span>
+                                <span class="debt-stat-value" id="globalDebtPerCapita">$38,750</span>
+                            </div>
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">% of Global GDP</span>
+                                <span class="debt-stat-value" id="globalDebtGDPRatio">356%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="debt-clock-footer">
+                        <div class="data-source">
+                            <i data-lucide="info"></i>
+                            <span>Source: IMF, World Bank, Central Banks</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="debt-clock-container">
+                    <div class="debt-clock-header">
+                        <div class="debt-flag-large">
+                            <i data-lucide="flag" class="country-icon us"></i>
+                        </div>
+                        <h3 class="debt-clock-title">United States</h3>
+                        <p class="debt-clock-subtitle">Federal government debt</p>
+                    </div>
+                    <div class="debt-clock-display">
+                        <div class="debt-amount-container">
+                            <span class="debt-currency">$</span>
+                            <span class="debt-amount" id="usDebtAmount">33,740,000,000,000</span>
+                        </div>
+                        <div class="debt-stats">
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">Per Second</span>
+                                <span class="debt-stat-value" id="usDebtPerSecond">+$68,493</span>
+                            </div>
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">Per Citizen</span>
+                                <span class="debt-stat-value" id="usDebtPerCitizen">$100,420</span>
+                            </div>
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">% of GDP</span>
+                                <span class="debt-stat-value" id="usDebtGDPRatio">129.8%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="debt-clock-footer">
+                        <div class="data-source">
+                            <i data-lucide="info"></i>
+                            <span>Source: US Treasury, Federal Reserve</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="debt-clock-container">
+                    <div class="debt-clock-header">
+                        <div class="debt-flag-large">
+                            <i data-lucide="flag" class="country-icon uk"></i>
+                        </div>
+                        <h3 class="debt-clock-title">United Kingdom</h3>
+                        <p class="debt-clock-subtitle">Public sector net debt</p>
+                    </div>
+                    <div class="debt-clock-display">
+                        <div class="debt-amount-container">
+                            <span class="debt-currency">£</span>
+                            <span class="debt-amount" id="ukDebtAmount">2,800,000,000,000</span>
+                        </div>
+                        <div class="debt-stats">
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">Per Second</span>
+                                <span class="debt-stat-value" id="ukDebtPerSecond">+£1,746</span>
+                            </div>
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">Per Citizen</span>
+                                <span class="debt-stat-value" id="ukDebtPerCitizen">£41,180</span>
+                            </div>
+                            <div class="debt-stat">
+                                <span class="debt-stat-label">% of GDP</span>
+                                <span class="debt-stat-value" id="ukDebtGDPRatio">101.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="debt-clock-footer">
+                        <div class="data-source">
+                            <i data-lucide="info"></i>
+                            <span>Source: ONS, Bank of England</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="debt-clock-insights">
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h4>Debt Growth Rate</h4>
+                        <p>Global debt has increased by 127% since 2008 financial crisis, driven by pandemic response and monetary expansion.</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h4>Sustainability Concerns</h4>
+                        <p>Debt-to-GDP ratios approaching historical highs raise questions about long-term fiscal sustainability globally.</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i data-lucide="activity"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h4>Interest Burden</h4>
+                        <p>Rising interest rates significantly increase debt servicing costs, creating fiscal pressure on governments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!--Charts and Data Section-->
     <section class="charts-section" id="charts">
         <div class="content-container">

@@ -234,6 +234,29 @@ const economicData = {
                 { period: 'APP Resume', start: '2019', end: '2022', amount: 3.2 }
             ]
         }
+    },
+    debtClocks: {
+        global: {
+            baseAmount: 307000000000000, // $307 trillion
+            perSecond: 975232, // Growth per second
+            population: 7926000000, // Global population
+            gdp: 86200000000000, // Global GDP
+            lastUpdated: '2025-10-15'
+        },
+        us: {
+            baseAmount: 33740000000000, // $33.74 trillion
+            perSecond: 68493, // Growth per second
+            population: 336000000, // US population
+            gdp: 25980000000000, // US GDP
+            lastUpdated: '2025-10-15'
+        },
+        uk: {
+            baseAmount: 2800000000000, // £2.8 trillion
+            perSecond: 1746, // Growth per second in GBP
+            population: 68000000, // UK population
+            gdp: 2765000000000, // UK GDP in GBP
+            lastUpdated: '2025-10-15'
+        }
     }
 };
 
@@ -2047,6 +2070,109 @@ class PerformanceManager {
     }
 }
 
+// Debt Clock Manager
+class DebtClockManager {
+    constructor() {
+        this.startTime = Date.now();
+        this.debtData = economicData.debtClocks;
+        this.isActive = true;
+        
+        this.initializeDebtClocks();
+        this.startDebtCounters();
+    }
+
+    initializeDebtClocks() {
+        // Initialize with base amounts
+        this.updateDebtDisplay('global', this.debtData.global.baseAmount);
+        this.updateDebtDisplay('us', this.debtData.us.baseAmount);
+        this.updateDebtDisplay('uk', this.debtData.uk.baseAmount);
+        
+        // Update static information
+        this.updateStaticStats();
+        
+        console.log('Debt clocks initialized with real-time tracking');
+    }
+
+    updateStaticStats() {
+        // Global stats
+        document.getElementById('globalDebtPerSecond').textContent = 
+            `+$${this.formatNumber(this.debtData.global.perSecond)}`;
+        document.getElementById('globalDebtPerCapita').textContent = 
+            `$${this.formatNumber(Math.round(this.debtData.global.baseAmount / this.debtData.global.population))}`;
+        document.getElementById('globalDebtGDPRatio').textContent = 
+            `${Math.round((this.debtData.global.baseAmount / this.debtData.global.gdp) * 100)}%`;
+
+        // US stats
+        document.getElementById('usDebtPerSecond').textContent = 
+            `+$${this.formatNumber(this.debtData.us.perSecond)}`;
+        document.getElementById('usDebtPerCitizen').textContent = 
+            `$${this.formatNumber(Math.round(this.debtData.us.baseAmount / this.debtData.us.population))}`;
+        document.getElementById('usDebtGDPRatio').textContent = 
+            `${Math.round((this.debtData.us.baseAmount / this.debtData.us.gdp) * 100)}%`;
+
+        // UK stats
+        document.getElementById('ukDebtPerSecond').textContent = 
+            `+£${this.formatNumber(this.debtData.uk.perSecond)}`;
+        document.getElementById('ukDebtPerCitizen').textContent = 
+            `£${this.formatNumber(Math.round(this.debtData.uk.baseAmount / this.debtData.uk.population))}`;
+        document.getElementById('ukDebtGDPRatio').textContent = 
+            `${Math.round((this.debtData.uk.baseAmount / this.debtData.uk.gdp) * 100)}%`;
+    }
+
+    startDebtCounters() {
+        setInterval(() => {
+            if (!this.isActive) return;
+            
+            const secondsElapsed = Math.floor((Date.now() - this.startTime) / 1000);
+            
+            // Calculate current debt amounts
+            const globalCurrent = this.debtData.global.baseAmount + (secondsElapsed * this.debtData.global.perSecond);
+            const usCurrent = this.debtData.us.baseAmount + (secondsElapsed * this.debtData.us.perSecond);
+            const ukCurrent = this.debtData.uk.baseAmount + (secondsElapsed * this.debtData.uk.perSecond);
+            
+            // Update displays
+            this.updateDebtDisplay('global', globalCurrent);
+            this.updateDebtDisplay('us', usCurrent);
+            this.updateDebtDisplay('uk', ukCurrent);
+            
+        }, 1000); // Update every second
+    }
+
+    updateDebtDisplay(country, amount) {
+        const element = document.getElementById(`${country}DebtAmount`);
+        if (element) {
+            element.textContent = this.formatDebtAmount(amount);
+        }
+    }
+
+    formatDebtAmount(amount) {
+        // Format large numbers with commas
+        return Math.floor(amount).toLocaleString('en-US');
+    }
+
+    formatNumber(num) {
+        return num.toLocaleString('en-US');
+    }
+
+    pauseCounters() {
+        this.isActive = false;
+    }
+
+    resumeCounters() {
+        this.isActive = true;
+        this.startTime = Date.now(); // Reset start time to current
+    }
+
+    // Add visibility change handler to pause when tab is not active
+    handleVisibilityChange() {
+        if (document.hidden) {
+            this.pauseCounters();
+        } else {
+            this.resumeCounters();
+        }
+    }
+}
+
 // Initialize all managers when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     // Enable smooth scrolling first
@@ -2066,6 +2192,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         globalCharts = new ChartManager();
         new CardManager(); // Initialize after charts are ready
+        
+        // Initialize debt clock manager
+        const debtClockManager = new DebtClockManager();
+        
+        // Handle visibility changes for debt clock optimization
+        document.addEventListener('visibilitychange', () => {
+            debtClockManager.handleVisibilityChange();
+        });
     }, 100);
     
     console.log('Brr News fully initialized with dynamic charts and enhanced features!');
