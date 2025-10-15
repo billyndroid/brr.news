@@ -134,6 +134,124 @@ header {
     background: rgba(0,150,200,1);
 }
 
+/* Modern Icon Styles */
+.search-container button i[data-lucide] {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5px;
+}
+
+/* Education Card Icons */
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.card-icon i[data-lucide] {
+    width: 48px;
+    height: 48px;
+    stroke-width: 1.5px;
+    color: var(--primary-blue);
+    transition: all 0.3s ease;
+}
+
+.education-card:hover .card-icon i[data-lucide] {
+    transform: scale(1.1);
+    stroke-width: 2px;
+}
+
+/* Country Flag Icons */
+.rate-flag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.rate-flag i[data-lucide] {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2px;
+}
+
+/* Country-specific flag colors */
+.country-icon.us {
+    color: #B22234;
+}
+
+.rate-item:hover .country-icon.us {
+    color: #FFFFFF;
+}
+
+.rate-item .rate-flag:has(.country-icon.us) {
+    background: linear-gradient(135deg, #B22234, #3C3B6E);
+}
+
+.country-icon.eu {
+    color: #003399;
+}
+
+.rate-item:hover .country-icon.eu {
+    color: #FFCC00;
+}
+
+.rate-item .rate-flag:has(.country-icon.eu) {
+    background: linear-gradient(135deg, #003399, #FFCC00);
+}
+
+.country-icon.uk {
+    color: #C8102E;
+}
+
+.rate-item:hover .country-icon.uk {
+    color: #FFFFFF;
+}
+
+.rate-item .rate-flag:has(.country-icon.uk) {
+    background: linear-gradient(135deg, #C8102E, #012169);
+}
+
+.country-icon.ca {
+    color: #FF0000;
+}
+
+.rate-item:hover .country-icon.ca {
+    color: #FFFFFF;
+}
+
+.rate-item .rate-flag:has(.country-icon.ca) {
+    background: linear-gradient(135deg, #FF0000, #FF0000);
+}
+
+/* Icon hover effects */
+.rate-item:hover .rate-flag {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* General icon improvements */
+i[data-lucide] {
+    transition: all 0.3s ease;
+}
+
+/* Icon animations */
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.education-card:hover .card-icon i[data-lucide] {
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
 /* Hero Section Enhancement */
 .hero-section {
     background-color: var(--dark-blue);
@@ -748,9 +866,78 @@ header {
     background: #e9ecef;
 }
 
+/* Country Flag Icons - Updated for modern SVG flags */
 .rate-flag {
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     margin-right: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.rate-flag i[data-lucide] {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2.5px;
+    z-index: 2;
+    position: relative;
+}
+
+/* Country-specific styling with modern gradients */
+.rate-item .rate-flag:has(.country-icon.us) {
+    background: linear-gradient(135deg, #B22234 0%, #FFFFFF 50%, #3C3B6E 100%);
+    box-shadow: 0 2px 8px rgba(178, 34, 52, 0.3);
+}
+
+.country-icon.us {
+    color: #FFFFFF;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.rate-item .rate-flag:has(.country-icon.eu) {
+    background: linear-gradient(135deg, #003399 0%, #FFCC00 100%);
+    box-shadow: 0 2px 8px rgba(0, 51, 153, 0.3);
+}
+
+.country-icon.eu {
+    color: #FFCC00;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.rate-item .rate-flag:has(.country-icon.uk) {
+    background: linear-gradient(45deg, #C8102E 25%, #FFFFFF 25%, #FFFFFF 50%, #C8102E 50%, #C8102E 75%, #012169 75%);
+    box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
+}
+
+.country-icon.uk {
+    color: #FFFFFF;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+}
+
+.rate-item .rate-flag:has(.country-icon.ca) {
+    background: linear-gradient(135deg, #FF0000 0%, #FFFFFF 50%, #FF0000 100%);
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+}
+
+.country-icon.ca {
+    color: #FF0000;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+/* Enhanced hover effects */
+.rate-item:hover .rate-flag {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.rate-item:hover .rate-flag i[data-lucide] {
+    transform: scale(1.1);
+    stroke-width: 3px;
 }
 
 .rate-info {
@@ -770,7 +957,7 @@ header {
     font-weight: 700;
 }
 
-/* Commodity Tracker */
+/* Commodity Tracker - Enhanced with icons */
 .commodity-tracker {
     display: flex;
     flex-direction: column;
@@ -784,22 +971,54 @@ header {
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.commodity-item:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.commodity-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.commodity-icon i[data-lucide] {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2px;
+    color: var(--primary-blue);
 }
 
 .commodity-name {
     font-weight: 600;
     flex: 1;
+    margin-left: 0.5rem;
 }
 
 .commodity-price {
     font-weight: 700;
     margin-right: 1rem;
+    color: var(--dark-blue);
 }
 
 .commodity-change {
     font-weight: 600;
     padding: 0.25rem 0.5rem;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 70px;
+}
+
+.commodity-change i[data-lucide] {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5px;
 }
 
 .commodity-change.positive {
@@ -807,9 +1026,39 @@ header {
     color: #155724;
 }
 
+.commodity-change.positive i[data-lucide] {
+    color: #155724;
+}
+
 .commodity-change.negative {
     background: #f8d7da;
     color: #721c24;
+}
+
+.commodity-change.negative i[data-lucide] {
+    color: #721c24;
+}
+
+/* Calculator Header */
+.calculator-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.calculator-header i[data-lucide] {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2px;
+    color: var(--primary-blue);
+}
+
+.calculator-header h3 {
+    margin: 0;
+    color: var(--dark-blue);
+    text-shadow: none;
 }
 
 /* Education Section */
@@ -840,9 +1089,32 @@ header {
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
+/* Education Card Icons - Updated for SVG icons */
 .card-icon {
-    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
     margin-bottom: 1rem;
+}
+
+.card-icon i[data-lucide] {
+    width: 48px;
+    height: 48px;
+    stroke-width: 1.5px;
+    color: var(--primary-blue);
+    transition: all 0.3s ease;
+}
+
+.education-card:hover .card-icon i[data-lucide] {
+    transform: scale(1.1);
+    stroke-width: 2px;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1.1); }
+    50% { transform: scale(1.2); }
 }
 
 .education-card h3 {
@@ -1281,6 +1553,31 @@ blockquote.twitter-tweet a:focus {
     .square, .element {
         width: 150px;
         height: 150px;
+    }
+    
+    /* Mobile icon adjustments */
+    .section-icon i[data-lucide] {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .card-icon i[data-lucide] {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .commodity-item {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .commodity-icon {
+        margin-right: 0.5rem;
+    }
+    
+    .calculator-header {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }
 

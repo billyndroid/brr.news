@@ -7,6 +7,8 @@
     <link href="styles/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Major+Mono+Display&family=Vollkorn+SC&display&family=Poppins:wght@100;300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/bqi4ezu.css">
+    <!-- Lucide Icons for modern, sleek SVG icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <title>Inflation News</title>
 </head>
 <body>
@@ -25,7 +27,7 @@
                     <div class="search-container">
                         <form action="/search" method="GET">
                             <input type="text" placeholder="Search.." name="search" aria-label="Search">
-                            <button type="submit" aria-label="Search"><i class="fa fa-search"></i></button>
+                            <button type="submit" aria-label="Search"><i data-lucide="search"></i></button>
                         </form>
                     </div>                  
                 </nav>
@@ -71,6 +73,7 @@
     <section class="news-section" id="news">
         <div class="content-container">
             <header class="section-header">
+                <div class="section-icon"><i data-lucide="newspaper"></i></div>
                 <h2 class="section-title">Latest Economic News</h2>
                 <p class="section-subtitle">Stay informed with real-time updates on inflation and monetary policy</p>
             </header>
@@ -208,6 +211,7 @@
     <section class="charts-section" id="charts">
         <div class="content-container">
             <header class="section-header">
+                <div class="section-icon"><i data-lucide="bar-chart-3"></i></div>
                 <h2 class="section-title">Economic Data & Charts</h2>
                 <p class="section-subtitle">Visual analysis of key economic indicators and trends</p>
             </header>
@@ -252,28 +256,28 @@
                     <h3 class="chart-title">Central Bank Interest Rates</h3>
                     <div class="rates-comparison">
                         <div class="rate-item">
-                            <div class="rate-flag">🇺🇸</div>
+                            <div class="rate-flag"><i data-lucide="flag" class="country-icon us"></i></div>
                             <div class="rate-info">
                                 <span class="rate-country">Federal Reserve</span>
                                 <span class="rate-value">5.25% - 5.50%</span>
                             </div>
                         </div>
                         <div class="rate-item">
-                            <div class="rate-flag">🇪🇺</div>
+                            <div class="rate-flag"><i data-lucide="flag" class="country-icon eu"></i></div>
                             <div class="rate-info">
                                 <span class="rate-country">European Central Bank</span>
                                 <span class="rate-value">4.50%</span>
                             </div>
                         </div>
                         <div class="rate-item">
-                            <div class="rate-flag">🇬🇧</div>
+                            <div class="rate-flag"><i data-lucide="flag" class="country-icon uk"></i></div>
                             <div class="rate-info">
                                 <span class="rate-country">Bank of England</span>
                                 <span class="rate-value">5.25%</span>
                             </div>
                         </div>
                         <div class="rate-item">
-                            <div class="rate-flag">🇨🇦</div>
+                            <div class="rate-flag"><i data-lucide="flag" class="country-icon ca"></i></div>
                             <div class="rate-info">
                                 <span class="rate-country">Bank of Canada</span>
                                 <span class="rate-value">5.00%</span>
@@ -286,24 +290,28 @@
                     <h3 class="chart-title">Commodity Price Index</h3>
                     <div class="commodity-tracker">
                         <div class="commodity-item">
+                            <div class="commodity-icon"><i data-lucide="coins"></i></div>
                             <span class="commodity-name">Gold</span>
                             <span class="commodity-price">$2,031.50</span>
-                            <span class="commodity-change positive">+1.2%</span>
+                            <span class="commodity-change positive"><i data-lucide="trending-up"></i>+1.2%</span>
                         </div>
                         <div class="commodity-item">
+                            <div class="commodity-icon"><i data-lucide="fuel"></i></div>
                             <span class="commodity-name">Oil (WTI)</span>
                             <span class="commodity-price">$87.45</span>
-                            <span class="commodity-change negative">-0.8%</span>
+                            <span class="commodity-change negative"><i data-lucide="trending-down"></i>-0.8%</span>
                         </div>
                         <div class="commodity-item">
+                            <div class="commodity-icon"><i data-lucide="wheat"></i></div>
                             <span class="commodity-name">Wheat</span>
                             <span class="commodity-price">$6.23/bu</span>
-                            <span class="commodity-change positive">+3.1%</span>
+                            <span class="commodity-change positive"><i data-lucide="trending-up"></i>+3.1%</span>
                         </div>
                         <div class="commodity-item">
+                            <div class="commodity-icon"><i data-lucide="zap"></i></div>
                             <span class="commodity-name">Copper</span>
                             <span class="commodity-price">$8,234/MT</span>
-                            <span class="commodity-change positive">+0.5%</span>
+                            <span class="commodity-change positive"><i data-lucide="trending-up"></i>+0.5%</span>
                         </div>
                     </div>
                 </div>
@@ -315,34 +323,35 @@
     <section class="education-section" id="about">
         <div class="content-container">
             <header class="section-header">
+                <div class="section-icon"><i data-lucide="graduation-cap"></i></div>
                 <h2 class="section-title">Understanding Inflation</h2>
                 <p class="section-subtitle">Essential knowledge for navigating economic uncertainty</p>
             </header>
             
             <div class="education-grid">
                 <div class="education-card">
-                    <div class="card-icon">📈</div>
+                    <div class="card-icon"><i data-lucide="trending-up"></i></div>
                     <h3>What is Inflation?</h3>
                     <p>Inflation is the rate at which the general level of prices for goods and services rises, eroding the purchasing power of money over time.</p>
                     <a href="#" class="learn-more">Learn More</a>
                 </div>
                 
                 <div class="education-card">
-                    <div class="card-icon">🏦</div>
+                    <div class="card-icon"><i data-lucide="building-2"></i></div>
                     <h3>Central Bank Roles</h3>
                     <p>Central banks use monetary policy tools like interest rates and money supply to maintain price stability and economic growth.</p>
                     <a href="#" class="learn-more">Learn More</a>
                 </div>
                 
                 <div class="education-card">
-                    <div class="card-icon">💰</div>
+                    <div class="card-icon"><i data-lucide="coins"></i></div>
                     <h3>Types of Inflation</h3>
                     <p>Demand-pull, cost-push, and built-in inflation each have different causes and require different policy responses.</p>
                     <a href="#" class="learn-more">Learn More</a>
                 </div>
                 
                 <div class="education-card">
-                    <div class="card-icon">🌍</div>
+                    <div class="card-icon"><i data-lucide="globe"></i></div>
                     <h3>Global Impact</h3>
                     <p>Inflation affects international trade, currency values, and cross-border economic relationships in complex ways.</p>
                     <a href="#" class="learn-more">Learn More</a>
@@ -350,7 +359,10 @@
             </div>
             
             <div class="inflation-calculator">
-                <h3>Inflation Impact Calculator</h3>
+                <div class="calculator-header">
+                    <i data-lucide="calculator"></i>
+                    <h3>Inflation Impact Calculator</h3>
+                </div>
                 <div class="calculator-form">
                     <div class="input-group">
                         <label for="initial-amount">Initial Amount ($)</label>
@@ -394,5 +406,9 @@
     </div>
 </footer>
     <script src="scripts/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
