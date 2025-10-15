@@ -619,7 +619,7 @@ i[data-lucide] {
 /* Card Styles */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     padding: 2rem;
     max-width: 1200px;
@@ -3428,12 +3428,6 @@ blockquote.twitter-tweet a:focus {
         gap: 1.5rem;
     }
     
-    .card-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1rem;
-    }
-    
     .content-container {
         padding: 0 1rem;
     }
@@ -3566,8 +3560,17 @@ blockquote.twitter-tweet a:focus {
     box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
+/* Mobile styles for card container */
+@media (max-width: 480px) {
+    .card-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+}
+
 /* Font Loading Optimization */
-/* Font Loading Optimization */\n/* Font display swap should be defined in @font-face rules */
+/* Font display swap should be defined in @font-face rules */
 
 /* Adobe Fonts Documentation - Updated Organization */
 /*
