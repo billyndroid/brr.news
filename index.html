@@ -48,6 +48,14 @@
                     <span class="stat-label">Current US Inflation</span>
                 </div>
                 <div class="stat-item">
+                    <span class="stat-number">$21.7T</span>
+                    <span class="stat-label">US Money Supply (M2)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$7.8T</span>
+                    <span class="stat-label">Fed Balance Sheet</span>
+                </div>
+                <div class="stat-item">
                     <span class="stat-number">3.8%</span>
                     <span class="stat-label">EU Inflation Rate</span>
                 </div>
@@ -138,7 +146,7 @@
         <!--Inflation Rate Section-->
     <section id="inflation">
         <div class="block-container">
-        <h3 id="heading2" class="inflation-dashboard-title">Inflation Rate Dashboard</h3>
+        <h2 id="heading2" class="section-title">Inflation Rate Dashboard</h2>
                 <!--<div class="square-wrapper">
                     <div class="square square-transition"></div>
                   </div>
@@ -154,7 +162,6 @@
                 <p class="modern-monetary-theory-text">Twitter/Square CEO, Jack was critisized recently for suggesting that we may see hyperinflation as a result of quantitative easing - when a central bank prints more money to inject into the system and prevent recession.</p>
             </div>
             <div class="p-container-slowest">
-                <p>There are many questions over whether or not this is a solution.</p>
             </div>
             <div class="jack-tweet">
             <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Hyperinflation is going to change everything. It’s happening.</p>&mdash; jack⚡️ (@jack) <a href="https://twitter.com/jack/status/1451733913961783299?ref_src=twsrc%5Etfw">October 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -276,6 +283,122 @@
                                 <span class="rate-country">Bank of Canada</span>
                                 <span class="rate-value">5.00%</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">National Debt Levels</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="nationalDebtChart" width="600" height="400"></canvas>
+                    </div>
+                    <div class="debt-comparison">
+                        <div class="debt-item">
+                            <div class="debt-flag"><i data-lucide="flag" class="country-icon us"></i></div>
+                            <div class="debt-info">
+                                <span class="debt-country">United States</span>
+                                <span class="debt-value">$33.7 Trillion</span>
+                                <span class="debt-ratio">129.8% of GDP</span>
+                            </div>
+                            <div class="debt-change">
+                                <span class="debt-trend increasing"><i data-lucide="trending-up"></i>+2.1%</span>
+                            </div>
+                        </div>
+                        <div class="debt-item">
+                            <div class="debt-flag"><i data-lucide="flag" class="country-icon eu"></i></div>
+                            <div class="debt-info">
+                                <span class="debt-country">European Union</span>
+                                <span class="debt-value">€13.2 Trillion</span>
+                                <span class="debt-ratio">83.5% of GDP</span>
+                            </div>
+                            <div class="debt-change">
+                                <span class="debt-trend stable"><i data-lucide="minus"></i>-0.3%</span>
+                            </div>
+                        </div>
+                        <div class="debt-item">
+                            <div class="debt-flag"><i data-lucide="flag" class="country-icon uk"></i></div>
+                            <div class="debt-info">
+                                <span class="debt-country">United Kingdom</span>
+                                <span class="debt-value">£2.8 Trillion</span>
+                                <span class="debt-ratio">101.2% of GDP</span>
+                            </div>
+                            <div class="debt-change">
+                                <span class="debt-trend increasing"><i data-lucide="trending-up"></i>+1.8%</span>
+                            </div>
+                        </div>
+                        <div class="debt-item">
+                            <div class="debt-flag"><i data-lucide="flag" class="country-icon jp"></i></div>
+                            <div class="debt-info">
+                                <span class="debt-country">Japan</span>
+                                <span class="debt-value">¥1,395 Trillion</span>
+                                <span class="debt-ratio">263.1% of GDP</span>
+                            </div>
+                            <div class="debt-change">
+                                <span class="debt-trend increasing"><i data-lucide="trending-up"></i>+1.4%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">Money Supply & Quantitative Easing</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="moneySupplyChart" width="600" height="400"></canvas>
+                    </div>
+                    <div class="qe-tracker">
+                        <div class="qe-item">
+                            <div class="qe-flag"><i data-lucide="flag" class="country-icon us"></i></div>
+                            <div class="qe-info">
+                                <span class="qe-country">United States</span>
+                                <span class="qe-value">M2: $21.7T (+8.2%)</span>
+                                <span class="qe-details">Fed Balance: $7.8T</span>
+                            </div>
+                            <div class="qe-status">
+                                <span class="qe-policy tightening">Tightening</span>
+                            </div>
+                        </div>
+                        <div class="qe-item">
+                            <div class="qe-flag"><i data-lucide="flag" class="country-icon uk"></i></div>
+                            <div class="qe-info">
+                                <span class="qe-country">United Kingdom</span>
+                                <span class="qe-value">M4: £2.8T (+4.1%)</span>
+                                <span class="qe-details">BoE Balance: £950B</span>
+                            </div>
+                            <div class="qe-status">
+                                <span class="qe-policy tightening">Tightening</span>
+                            </div>
+                        </div>
+                        <div class="qe-item">
+                            <div class="qe-flag"><i data-lucide="flag" class="country-icon eu"></i></div>
+                            <div class="qe-info">
+                                <span class="qe-country">European Union</span>
+                                <span class="qe-value">M3: €15.2T (+3.7%)</span>
+                                <span class="qe-details">ECB Balance: €7.1T</span>
+                            </div>
+                            <div class="qe-status">
+                                <span class="qe-policy neutral">Neutral</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">Quantitative Easing Timeline</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="qeTimelineChart" width="600" height="400"></canvas>
+                    </div>
+                    <div class="qe-timeline-summary">
+                        <div class="timeline-stat">
+                            <span class="stat-label">Total US QE (2008-2025)</span>
+                            <span class="stat-value">$8.25 Trillion</span>
+                        </div>
+                        <div class="timeline-stat">
+                            <span class="stat-label">Total UK QE (2009-2025)</span>
+                            <span class="stat-value">£875 Billion</span>
+                        </div>
+                        <div class="timeline-stat">
+                            <span class="stat-label">Total EU APP (2015-2025)</span>
+                            <span class="stat-value">€3.2 Trillion</span>
                         </div>
                     </div>
                 </div>

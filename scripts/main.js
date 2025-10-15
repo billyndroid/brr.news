@@ -89,6 +89,151 @@ const economicData = {
             current: 4.7,
             trend: 'mixed'
         }
+    },
+    debt: {
+        us: {
+            total: 33.7, // in trillions USD
+            gdpRatio: 129.8,
+            change: 2.1,
+            trend: 'increasing',
+            historical: [
+                { date: '2020', value: 28.4 },
+                { date: '2021', value: 29.2 },
+                { date: '2022', value: 31.1 },
+                { date: '2023', value: 32.3 },
+                { date: '2024', value: 33.0 },
+                { date: '2025', value: 33.7 }
+            ]
+        },
+        eu: {
+            total: 13.2, // in trillions EUR
+            gdpRatio: 83.5,
+            change: -0.3,
+            trend: 'stable',
+            historical: [
+                { date: '2020', value: 12.1 },
+                { date: '2021', value: 12.8 },
+                { date: '2022', value: 13.1 },
+                { date: '2023', value: 13.4 },
+                { date: '2024', value: 13.3 },
+                { date: '2025', value: 13.2 }
+            ]
+        },
+        uk: {
+            total: 2.8, // in trillions GBP
+            gdpRatio: 101.2,
+            change: 1.8,
+            trend: 'increasing',
+            historical: [
+                { date: '2020', value: 2.2 },
+                { date: '2021', value: 2.4 },
+                { date: '2022', value: 2.6 },
+                { date: '2023', value: 2.7 },
+                { date: '2024', value: 2.75 },
+                { date: '2025', value: 2.8 }
+            ]
+        },
+        japan: {
+            total: 1395, // in trillions JPY
+            gdpRatio: 263.1,
+            change: 1.4,
+            trend: 'increasing',
+            historical: [
+                { date: '2020', value: 1200 },
+                { date: '2021', value: 1250 },
+                { date: '2022', value: 1310 },
+                { date: '2023', value: 1350 },
+                { date: '2024', value: 1375 },
+                { date: '2025', value: 1395 }
+            ]
+        }
+    },
+    moneySupply: {
+        us: {
+            m2Current: 21.7, // in trillions USD
+            m2Change: 8.2, // annual percentage change
+            qePurchases: 4.2, // trillions in QE purchases 2020-2024
+            balanceSheetSize: 7.8, // Fed balance sheet in trillions
+            trend: 'expanding',
+            historical: [
+                { date: '2020-01', m2: 15.4, balanceSheet: 4.2, qe: 0.0 },
+                { date: '2020-06', m2: 18.1, balanceSheet: 7.1, qe: 2.8 },
+                { date: '2020-12', m2: 19.2, balanceSheet: 7.4, qe: 3.1 },
+                { date: '2021-06', m2: 20.5, balanceSheet: 8.0, qe: 3.5 },
+                { date: '2021-12', m2: 21.8, balanceSheet: 8.8, qe: 3.8 },
+                { date: '2022-06', m2: 21.6, balanceSheet: 8.9, qe: 4.0 },
+                { date: '2022-12', m2: 21.3, balanceSheet: 8.6, qe: 4.1 },
+                { date: '2023-06', m2: 20.9, balanceSheet: 8.2, qe: 4.1 },
+                { date: '2023-12', m2: 20.8, balanceSheet: 7.9, qe: 4.2 },
+                { date: '2024-06', m2: 21.1, balanceSheet: 7.8, qe: 4.2 },
+                { date: '2025-10', m2: 21.7, balanceSheet: 7.8, qe: 4.2 }
+            ]
+        },
+        uk: {
+            m4Current: 2.8, // in trillions GBP
+            m4Change: 4.1,
+            qePurchases: 875, // billions in QE purchases
+            balanceSheetSize: 950, // BoE balance sheet in billions GBP
+            trend: 'moderate_expansion',
+            historical: [
+                { date: '2020-01', m4: 2.3, balanceSheet: 620, qe: 645 },
+                { date: '2020-06', m4: 2.5, balanceSheet: 740, qe: 745 },
+                { date: '2020-12', m4: 2.6, balanceSheet: 780, qe: 795 },
+                { date: '2021-06', m4: 2.7, balanceSheet: 820, qe: 820 },
+                { date: '2021-12', m4: 2.75, balanceSheet: 860, qe: 845 },
+                { date: '2022-06', m4: 2.8, balanceSheet: 880, qe: 855 },
+                { date: '2022-12', m4: 2.82, balanceSheet: 900, qe: 865 },
+                { date: '2023-06', m4: 2.79, balanceSheet: 920, qe: 870 },
+                { date: '2023-12', m4: 2.77, balanceSheet: 935, qe: 872 },
+                { date: '2024-06', m4: 2.78, balanceSheet: 945, qe: 874 },
+                { date: '2025-10', m4: 2.8, balanceSheet: 950, qe: 875 }
+            ]
+        },
+        eu: {
+            m3Current: 15.2, // in trillions EUR
+            m3Change: 3.7,
+            appPurchases: 3.2, // trillions in Asset Purchase Programme
+            balanceSheetSize: 7.1, // ECB balance sheet in trillions
+            trend: 'controlled_expansion',
+            historical: [
+                { date: '2020-01', m3: 13.5, balanceSheet: 4.7, app: 2.6 },
+                { date: '2020-06', m3: 14.1, balanceSheet: 6.8, app: 2.8 },
+                { date: '2020-12', m3: 14.6, balanceSheet: 7.0, app: 2.9 },
+                { date: '2021-06', m3: 14.9, balanceSheet: 7.2, app: 3.0 },
+                { date: '2021-12', m3: 15.1, balanceSheet: 7.4, app: 3.1 },
+                { date: '2022-06', m3: 15.2, balanceSheet: 7.3, app: 3.15 },
+                { date: '2022-12', m3: 15.0, balanceSheet: 7.2, app: 3.18 },
+                { date: '2023-06', m3: 14.9, balanceSheet: 7.1, app: 3.19 },
+                { date: '2023-12', m3: 15.0, balanceSheet: 7.0, app: 3.2 },
+                { date: '2024-06', m3: 15.1, balanceSheet: 7.1, app: 3.2 },
+                { date: '2025-10', m3: 15.2, balanceSheet: 7.1, app: 3.2 }
+            ]
+        }
+    },
+    monetaryPolicy: {
+        currentStance: {
+            us: { policy: 'Tightening', qeActive: false, tapering: 'Complete' },
+            uk: { policy: 'Tightening', qeActive: false, tapering: 'Complete' },
+            eu: { policy: 'Neutral', qeActive: false, tapering: 'Complete' }
+        },
+        qeTimeline: {
+            us: [
+                { period: 'QE1', start: '2008', end: '2010', amount: 1.25 },
+                { period: 'QE2', start: '2010', end: '2011', amount: 0.6 },
+                { period: 'QE3', start: '2012', end: '2014', amount: 1.6 },
+                { period: 'COVID QE', start: '2020', end: '2021', amount: 4.2 }
+            ],
+            uk: [
+                { period: 'Initial QE', start: '2009', end: '2012', amount: 375 },
+                { period: 'Extension', start: '2016', end: '2018', amount: 435 },
+                { period: 'COVID QE', start: '2020', end: '2021', amount: 875 }
+            ],
+            eu: [
+                { period: 'APP', start: '2015', end: '2018', amount: 2.6 },
+                { period: 'PEPP', start: '2020', end: '2022', amount: 1.85 },
+                { period: 'APP Resume', start: '2019', end: '2022', amount: 3.2 }
+            ]
+        }
     }
 };
 
@@ -141,11 +286,32 @@ class ChartManager {
         // Main charts
         this.createGlobalInflationChart();
         this.createInterestRatesChart();
+        this.createNationalDebtChart();
+        this.createMoneySupplyChart();
+        this.createQETimelineChart();
         this.createCommodityChart();
         this.createInflationComponentsPie();
         this.createSpendingDistributionPie();
         this.createPerformanceRadar();
         this.createLiveDataChart();
+        
+        // Initialize chart controls
+        this.initializeChartControls();
+    }
+
+    // Initialize chart control event listeners
+    initializeChartControls() {
+        // Add event listeners to chart control buttons
+        document.querySelectorAll('.chart-control-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const period = btn.getAttribute('data-period');
+                this.updateChartPeriod(period);
+            });
+        });
+        
+        // Set initial period to 3y (active button)
+        this.updateChartPeriod('3y');
     }
 
     // Create small country inflation charts
@@ -213,11 +379,24 @@ class ChartManager {
         const ctx = document.getElementById('globalInflationChart');
         if (!ctx) return;
 
+        // Store full dataset for filtering
+        this.inflationChartData = {
+            fullLabels: economicData.inflation.uk.historical.map(item => {
+                const date = new Date(item.date + '-01');
+                return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+            }),
+            fullDatasets: Object.entries(economicData.inflation).map(([country, data]) => {
+                return data.historical.map(item => item.value);
+            })
+        };
+
+        // Create chart with initial 3-year view
+        const initialData = this.filterInflationData('3y');
         const datasets = Object.entries(economicData.inflation).map(([country, data], index) => {
             const colors = [chartColors.primary, chartColors.danger, chartColors.success, chartColors.warning];
             return {
                 label: country.toUpperCase(),
-                data: data.historical.map(item => item.value),
+                data: initialData.datasets[index],
                 borderColor: colors[index],
                 backgroundColor: colors[index] + '20',
                 borderWidth: 3,
@@ -231,10 +410,7 @@ class ChartManager {
         this.charts.globalInflationChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: economicData.inflation.uk.historical.map(item => {
-                    const date = new Date(item.date + '-01');
-                    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-                }),
+                labels: initialData.labels,
                 datasets: datasets
             },
             options: {
@@ -255,30 +431,143 @@ class ChartManager {
                         titleColor: chartColors.secondary,
                         bodyColor: chartColors.secondary,
                         borderColor: chartColors.primary,
-                        borderWidth: 1
+                        borderWidth: 1,
+                        callbacks: {
+                            afterBody: function(context) {
+                                const dataIndex = context[0].dataIndex;
+                                return `Data Point: ${context[0].parsed.y}%`;
+                            }
+                        }
                     }
                 },
                 scales: {
                     x: {
                         title: {
                             display: true,
-                            text: 'Time Period'
+                            text: 'Time Period',
+                            color: chartColors.secondary
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        ticks: {
+                            color: chartColors.secondary,
+                            maxRotation: 45,
+                            minRotation: 45
                         }
                     },
                     y: {
                         title: {
                             display: true,
-                            text: 'Inflation Rate (%)'
+                            text: 'Inflation Rate (%)',
+                            color: chartColors.secondary
                         },
-                        beginAtZero: false
+                        beginAtZero: false,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        ticks: {
+                            color: chartColors.secondary,
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
                     }
                 },
                 interaction: {
                     intersect: false,
                     mode: 'index'
+                },
+                animations: {
+                    tension: {
+                        duration: 1000,
+                        easing: 'linear',
+                        from: 0.3,
+                        to: 0.4,
+                        loop: false
+                    }
                 }
             }
         });
+    }
+
+    // Update chart time period
+    updateChartPeriod(period) {
+        const chart = this.charts.globalInflationChart;
+        if (!chart) return;
+
+        // Remove active class from all buttons
+        document.querySelectorAll('.chart-control-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Add active class to clicked button
+        const activeBtn = document.querySelector(`[data-period="${period}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+        }
+        
+        // Filter data based on selected period
+        const filteredData = this.filterInflationData(period);
+        
+        // Update chart with filtered data
+        chart.data.labels = filteredData.labels;
+        chart.data.datasets.forEach((dataset, index) => {
+            dataset.data = filteredData.datasets[index];
+        });
+        
+        chart.update('active');
+        console.log(`Updated chart to show ${period} period with ${filteredData.labels.length} data points`);
+    }
+
+    // Filter inflation data based on time period
+    filterInflationData(period) {
+        const allData = economicData.inflation;
+        const countries = Object.keys(allData);
+        let filteredHistorical;
+        
+        switch(period) {
+            case '1y':
+                // Last 12 months
+                filteredHistorical = allData.uk.historical.slice(-12);
+                break;
+            case '3y':
+                // Last 36 months (3 years) - but we only have ~13 data points, so show all
+                filteredHistorical = allData.uk.historical;
+                break;
+            case '5y':
+                // All available data (same as 3y for our dataset)
+                filteredHistorical = allData.uk.historical;
+                break;
+            case 'all':
+            default:
+                // All available data
+                filteredHistorical = allData.uk.historical;
+                break;
+        }
+        
+        // For 1y, actually filter to last 6 data points since we have limited data
+        if (period === '1y') {
+            filteredHistorical = allData.uk.historical.slice(-6);
+        }
+        
+        // Create labels from filtered data
+        const labels = filteredHistorical.map(item => {
+            const date = new Date(item.date + '-01');
+            return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        });
+        
+        // Create datasets for each country with filtered data
+        const datasets = countries.map(country => {
+            const countryData = allData[country].historical;
+            const startIndex = countryData.length - filteredHistorical.length;
+            return countryData.slice(startIndex).map(item => item.value);
+        });
+        
+        return {
+            labels: labels,
+            datasets: datasets
+        };
     }
 
     // Create interest rates bar chart
@@ -331,6 +620,264 @@ class ChartManager {
                         title: {
                             display: true,
                             text: 'Interest Rate (%)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Create national debt chart
+    createNationalDebtChart() {
+        const ctx = document.getElementById('nationalDebtChart');
+        if (!ctx) return;
+
+        const debtData = economicData.debt;
+        const countries = ['US', 'EU', 'UK', 'Japan'];
+        const debtLevels = [
+            debtData.us.gdpRatio,
+            debtData.eu.gdpRatio,
+            debtData.uk.gdpRatio,
+            debtData.japan.gdpRatio
+        ];
+
+        this.charts.nationalDebtChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: countries,
+                datasets: [{
+                    label: 'Debt-to-GDP Ratio (%)',
+                    data: debtLevels,
+                    backgroundColor: [
+                        'rgba(220, 53, 69, 0.8)',   // US - Red
+                        'rgba(54, 162, 235, 0.8)',  // EU - Blue
+                        'rgba(255, 99, 132, 0.8)',  // UK - Pink
+                        'rgba(255, 159, 64, 0.8)'   // Japan - Orange
+                    ],
+                    borderColor: [
+                        'rgba(220, 53, 69, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: chartColors.secondary,
+                        bodyColor: chartColors.secondary,
+                        borderColor: chartColors.primary,
+                        borderWidth: 1,
+                        callbacks: {
+                            afterBody: function(context) {
+                                const index = context[0].dataIndex;
+                                const countryKeys = ['us', 'eu', 'uk', 'japan'];
+                                const country = debtData[countryKeys[index]];
+                                return [
+                                    `Total Debt: ${country.total}${countryKeys[index] === 'japan' ? ' Trillion ¥' : countryKeys[index] === 'eu' ? ' Trillion €' : countryKeys[index] === 'uk' ? ' Trillion £' : ' Trillion $'}`,
+                                    `Annual Change: ${country.change > 0 ? '+' : ''}${country.change}%`
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Debt-to-GDP Ratio (%)',
+                            color: chartColors.secondary
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        ticks: {
+                            color: chartColors.secondary
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: chartColors.secondary
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Create money supply chart
+    createMoneySupplyChart() {
+        const ctx = document.getElementById('moneySupplyChart');
+        if (!ctx) return;
+
+        const moneyData = economicData.moneySupply;
+        const labels = moneyData.us.historical.map(item => item.date);
+
+        this.charts.moneySupplyChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'US M2 Supply (Trillions $)',
+                        data: moneyData.us.historical.map(item => item.m2),
+                        borderColor: '#DC3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'UK M4 Supply (Trillions £)',
+                        data: moneyData.uk.historical.map(item => item.m4),
+                        borderColor: '#007BFF',
+                        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    },
+                    {
+                        label: 'EU M3 Supply (Trillions €)',
+                        data: moneyData.eu.historical.map(item => item.m3),
+                        borderColor: '#28A745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        yAxisID: 'y2'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: chartColors.secondary,
+                        bodyColor: chartColors.secondary,
+                        borderColor: chartColors.primary,
+                        borderWidth: 1
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'US M2 (Trillions $)'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'UK M4 (Trillions £)'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    },
+                    y2: {
+                        type: 'linear',
+                        display: false,
+                        position: 'right'
+                    }
+                }
+            }
+        });
+    }
+
+    // Create QE timeline chart
+    createQETimelineChart() {
+        const ctx = document.getElementById('qeTimelineChart');
+        if (!ctx) return;
+
+        const qeData = economicData.monetaryPolicy.qeTimeline;
+        
+        this.charts.qeTimelineChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['QE1', 'QE2', 'QE3', 'COVID QE', 'UK Initial', 'UK Extension', 'UK COVID', 'EU APP', 'EU PEPP', 'EU Resume'],
+                datasets: [{
+                    label: 'QE Purchases (Trillions)',
+                    data: [
+                        qeData.us[0].amount, qeData.us[1].amount, qeData.us[2].amount, qeData.us[3].amount,
+                        qeData.uk[0].amount / 1000, qeData.uk[1].amount / 1000, qeData.uk[2].amount / 1000,
+                        qeData.eu[0].amount, qeData.eu[1].amount, qeData.eu[2].amount
+                    ],
+                    backgroundColor: [
+                        '#DC3545', '#DC3545', '#DC3545', '#DC3545', // US programs
+                        '#007BFF', '#007BFF', '#007BFF', // UK programs
+                        '#28A745', '#28A745', '#28A745' // EU programs
+                    ],
+                    borderColor: [
+                        '#DC3545', '#DC3545', '#DC3545', '#DC3545',
+                        '#007BFF', '#007BFF', '#007BFF',
+                        '#28A745', '#28A745', '#28A745'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: chartColors.secondary,
+                        bodyColor: chartColors.secondary,
+                        borderColor: chartColors.primary,
+                        borderWidth: 1,
+                        callbacks: {
+                            afterBody: function(context) {
+                                const programs = [
+                                    'US: 2008-2010', 'US: 2010-2011', 'US: 2012-2014', 'US: 2020-2021',
+                                    'UK: 2009-2012', 'UK: 2016-2018', 'UK: 2020-2021',
+                                    'EU: 2015-2018', 'EU: 2020-2022', 'EU: 2019-2022'
+                                ];
+                                return `Period: ${programs[context[0].dataIndex]}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'QE Purchases (Trillions)',
+                            color: chartColors.secondary
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
                         }
                     }
                 }
@@ -716,23 +1263,6 @@ class ChartManager {
             this.charts.liveDataChart.update();
             this.updateStreamUI();
         }
-    }
-
-    // Update chart time period
-    updateChartPeriod(period) {
-        // This would filter data based on the selected period
-        // For now, we'll just update the active button
-        document.querySelectorAll('.chart-control-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        
-        const activeBtn = document.querySelector(`[data-period="${period}"]`);
-        if (activeBtn) {
-            activeBtn.classList.add('active');
-        }
-        
-        // Here you would filter the data and update the chart
-        console.log(`Updating chart to show ${period} period`);
     }
 }
 
@@ -1166,8 +1696,25 @@ class NewsTickerManager {
                 "Forward guidance effectiveness questioned as market volatility persists despite clear communication",
                 "Term structure shifts signal changing expectations for long-term monetary policy stance"
             ],
+            quantitativeEasing: [
+                "Federal Reserve balance sheet reduction continues at $95 billion monthly pace as QT program proceeds",
+                "European Central Bank ends asset purchase program after 8 years of quantitative easing measures",
+                "Bank of England completes £875 billion QE program, begins gradual balance sheet normalization",
+                "Money supply growth slows dramatically as major central banks cease bond purchase programs",
+                "QE exit strategies vary across regions as economic conditions and inflation pressures diverge",
+                "Asset price distortions from QE unwind as central banks reduce market intervention significantly",
+                "Corporate bond markets adjust to reduced central bank purchases under quantitative tightening",
+                "Sovereign debt markets face liquidity challenges as QE support mechanisms are withdrawn",
+                "Banking reserves decline as quantitative tightening reduces excess liquidity in financial system",
+                "Mortgage-backed securities face pressure as Fed ends MBS purchase program completely",
+                "International spillovers from QE unwinding create volatility in emerging market currencies",
+                "Money velocity increases as QE-induced liquidity preference shifts back toward spending patterns",
+                "Asset purchase program effectiveness debated as long-term economic impacts become apparent",
+                "Central bank balance sheet composition shifts as emergency pandemic support measures expire",
+                "Quantitative easing legacy effects persist in bond markets despite program terminations",
+                "Money printing concerns resurface as inflation remains elevated despite QE program endings"
+            ],
             monetary: [
-                "Quantitative easing programs face scrutiny as asset purchases approach sustainable limits",
                 "Digital payment adoption accelerates, reshaping traditional monetary transmission mechanisms significantly",
                 "Currency volatility increases as divergent monetary policies create cross-border capital flows",
                 "Government bond markets experience unprecedented volatility amid shifting central bank policies",
@@ -1178,7 +1725,8 @@ class NewsTickerManager {
                 "Fiscal-monetary policy coordination tested as government debt sustainability concerns mount",
                 "Alternative monetary frameworks gain academic and policy attention amid conventional limits",
                 "Reserve currency dynamics shift as geopolitical tensions reshape international monetary system",
-                "Cryptocurrency regulation impacts monetary policy effectiveness as digital assets gain mainstream adoption"
+                "Cryptocurrency regulation impacts monetary policy effectiveness as digital assets gain mainstream adoption",
+                "M2 money supply contracts for first time since 1930s as Fed tightening takes effect"
             ],
             markets: [
                 "Commodity markets experience heightened volatility as inflation hedging demand surges globally",
