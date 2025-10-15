@@ -7,6 +7,9 @@
     <link href="styles/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Major+Mono+Display&family=Vollkorn+SC&display&family=Poppins:wght@100;300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/bqi4ezu.css">
+    <!-- Chart.js for dynamic data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <!-- Lucide Icons for modern, sleek SVG icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <title>Inflation News</title>
@@ -160,46 +163,58 @@
     </div>  
         <div class="card-container" id="rates">
             <!--United Kingdom Card-->
-            <article class="card">
+            <article class="card" data-country="uk">
                 <div class="card-content">
                     <h3 class="card-title">UK</h3>
-                    <img src="assets/bar-chart.png" alt="UK inflation chart" class="chart-image">
+                    <div class="chart-container-small">
+                        <canvas id="ukChart" width="200" height="150"></canvas>
+                    </div>
                     <div class="card-info">
                         <h4 class="country-name">United Kingdom</h4> 
-                        <p class="card-description">Inflation Rates</p>
+                        <p class="card-description">Current: <span class="current-rate">6.1%</span></p>
+                        <p class="card-trend">Trend: <span class="trend-indicator decreasing">↓ Decreasing</span></p>
                     </div> 
                 </div>
             </article>
             <!--European Union Card-->
-            <article class="card">
+            <article class="card" data-country="eu">
                 <div class="card-content">
                     <h3 class="card-title">EU</h3>
-                    <img src="assets/bar-chart.png" alt="EU inflation chart" class="chart-image">
+                    <div class="chart-container-small">
+                        <canvas id="euChart" width="200" height="150"></canvas>
+                    </div>
                     <div class="card-info">
                         <h4 class="country-name">European Union</h4> 
-                        <p class="card-description">Inflation Rates</p>
+                        <p class="card-description">Current: <span class="current-rate">3.8%</span></p>
+                        <p class="card-trend">Trend: <span class="trend-indicator stable">→ Stable</span></p>
                     </div> 
                 </div>
             </article>
             <!--United States Card-->
-            <article class="card">
+            <article class="card" data-country="us">
                 <div class="card-content">
                     <h3 class="card-title">US</h3>
-                    <img src="assets/bar-chart.png" alt="US inflation chart" class="chart-image">
+                    <div class="chart-container-small">
+                        <canvas id="usChart" width="200" height="150"></canvas>
+                    </div>
                     <div class="card-info">
                         <h4 class="country-name">United States</h4> 
-                        <p class="card-description">Inflation Rates</p>
+                        <p class="card-description">Current: <span class="current-rate">4.2%</span></p>
+                        <p class="card-trend">Trend: <span class="trend-indicator increasing">↑ Increasing</span></p>
                     </div> 
                 </div>
             </article>
             <!--Global Card-->
-            <article class="card">
+            <article class="card" data-country="global">
                 <div class="card-content">
                     <h3 class="card-title">Global</h3>
-                    <img src="assets/bar-chart.png" alt="Global inflation chart" class="chart-image">
+                    <div class="chart-container-small">
+                        <canvas id="globalChart" width="200" height="150"></canvas>
+                    </div>
                     <div class="card-info">
                         <h4 class="country-name">Global</h4> 
-                        <p class="card-description">Inflation Rates</p>
+                        <p class="card-description">Current: <span class="current-rate">4.7%</span></p>
+                        <p class="card-trend">Trend: <span class="trend-indicator mixed">↕ Mixed</span></p>
                     </div> 
                 </div>
             </article>        
@@ -218,41 +233,22 @@
             <div class="charts-grid">
                 <div class="chart-container">
                     <h3 class="chart-title">Global Inflation Trends (2020-2025)</h3>
-                    <div class="chart-placeholder">
-                        <img src="assets/bar-chart.png" alt="Global inflation chart" class="chart-image">
-                        <div class="chart-overlay">
-                            <div class="chart-data">
-                                <div class="data-point">
-                                    <span class="year">2020</span>
-                                    <span class="value">0.7%</span>
-                                </div>
-                                <div class="data-point">
-                                    <span class="year">2021</span>
-                                    <span class="value">4.7%</span>
-                                </div>
-                                <div class="data-point">
-                                    <span class="year">2022</span>
-                                    <span class="value">8.0%</span>
-                                </div>
-                                <div class="data-point">
-                                    <span class="year">2023</span>
-                                    <span class="value">4.1%</span>
-                                </div>
-                                <div class="data-point">
-                                    <span class="year">2024</span>
-                                    <span class="value">3.2%</span>
-                                </div>
-                                <div class="data-point current">
-                                    <span class="year">2025</span>
-                                    <span class="value">4.2%</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="chart-wrapper">
+                        <canvas id="globalInflationChart" width="800" height="400"></canvas>
+                    </div>
+                    <div class="chart-controls">
+                        <button class="chart-control-btn" data-period="1y">1 Year</button>
+                        <button class="chart-control-btn active" data-period="3y">3 Years</button>
+                        <button class="chart-control-btn" data-period="5y">5 Years</button>
+                        <button class="chart-control-btn" data-period="all">All Time</button>
                     </div>
                 </div>
                 
                 <div class="chart-container">
                     <h3 class="chart-title">Central Bank Interest Rates</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="interestRatesChart" width=\"600\" height=\"400\"></canvas>
+                    </div>
                     <div class="rates-comparison">
                         <div class="rate-item">
                             <div class="rate-flag"><i data-lucide="flag" class="country-icon us"></i></div>
@@ -287,6 +283,9 @@
                 
                 <div class="chart-container">
                     <h3 class="chart-title">Commodity Price Index</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="commodityChart" width=\"600\" height=\"400\"></canvas>
+                    </div>
                     <div class="commodity-tracker">
                         <div class="commodity-item">
                             <div class="commodity-icon"><i data-lucide="coins"></i></div>
@@ -311,6 +310,59 @@
                             <span class="commodity-name">Copper</span>
                             <span class="commodity-price">$8,234/MT</span>
                             <span class="commodity-change positive"><i data-lucide="trending-up"></i>+0.5%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- New Advanced Analytics Section -->
+                <div class="chart-container wide">
+                    <h3 class="chart-title">Economic Indicators Dashboard</h3>
+                    <div class="charts-sub-grid">
+                        <div class="chart-item">
+                            <h4 class="sub-chart-title">Inflation Components Breakdown</h4>
+                            <div class="chart-wrapper-small">
+                                <canvas id="inflationComponentsPie" width=\"300\" height=\"300\"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-item">
+                            <h4 class="sub-chart-title">Consumer Spending Distribution</h4>
+                            <div class="chart-wrapper-small">
+                                <canvas id="spendingDistributionPie" width=\"300\" height=\"300\"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-item">
+                            <h4 class="sub-chart-title">Economic Performance Metrics</h4>
+                            <div class="chart-wrapper-small">
+                                <canvas id="performanceRadar" width=\"300\" height=\"300\"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Real-time Data Stream -->
+                <div class="chart-container">
+                    <h3 class="chart-title">Live Economic Data Stream</h3>
+                    <div class="data-stream-container">
+                        <div class="stream-header">
+                            <span class="stream-status">
+                                <i data-lucide="wifi" class="status-icon"></i>
+                                Live Data
+                            </span>
+                            <span class="last-update">Last updated: <span id="lastUpdateTime">--:--:--</span></span>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="liveDataChart" width=\"800\" height=\"300\"></canvas>
+                        </div>
+                        <div class="stream-controls">
+                            <button class="stream-btn" id="pauseStream">
+                                <i data-lucide="pause"></i> Pause
+                            </button>
+                            <button class="stream-btn" id="resetStream">
+                                <i data-lucide="rotate-ccw"></i> Reset
+                            </button>
+                            <div class="stream-info">
+                                <span class="data-point-count">Data points: <span id="dataPointCount">0</span></span>
+                            </div>
                         </div>
                     </div>
                 </div>

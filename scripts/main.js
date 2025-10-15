@@ -1,16 +1,740 @@
 
 /**
- * Brr News - Main JavaScript File
- * Handles smooth scrolling and scroll-triggered animations
+ * Brr News - Enhanced Main JavaScript File
+ * Handles dynamic charts, smooth scrolling, animations, and real-time data
  */
+
+// Chart.js configuration and chart instances
+let globalCharts = {};
+let liveDataStream = null;
+let streamInterval = null;
+let isStreamPaused = false;
+
+// Economic data storage
+const economicData = {
+    inflation: {
+        uk: {
+            historical: [
+                { date: '2023-01', value: 10.5 },
+                { date: '2023-03', value: 10.1 },
+                { date: '2023-06', value: 8.7 },
+                { date: '2023-09', value: 6.7 },
+                { date: '2023-12', value: 4.0 },
+                { date: '2024-03', value: 3.2 },
+                { date: '2024-06', value: 2.0 },
+                { date: '2024-09', value: 2.2 },
+                { date: '2024-12', value: 4.2 },
+                { date: '2025-03', value: 5.8 },
+                { date: '2025-06', value: 7.2 },
+                { date: '2025-09', value: 6.8 },
+                { date: '2025-10', value: 6.1 }
+            ],
+            current: 6.1,
+            trend: 'decreasing'
+        },
+        eu: {
+            historical: [
+                { date: '2023-01', value: 8.5 },
+                { date: '2023-03', value: 6.9 },
+                { date: '2023-06', value: 5.5 },
+                { date: '2023-09', value: 4.3 },
+                { date: '2023-12', value: 2.9 },
+                { date: '2024-03', value: 2.4 },
+                { date: '2024-06', value: 2.5 },
+                { date: '2024-09', value: 1.7 },
+                { date: '2024-12', value: 2.3 },
+                { date: '2025-03', value: 2.6 },
+                { date: '2025-06', value: 3.1 },
+                { date: '2025-09', value: 3.5 },
+                { date: '2025-10', value: 3.8 }
+            ],
+            current: 3.8,
+            trend: 'stable'
+        },
+        us: {
+            historical: [
+                { date: '2023-01', value: 6.4 },
+                { date: '2023-03', value: 5.0 },
+                { date: '2023-06', value: 3.0 },
+                { date: '2023-09', value: 3.7 },
+                { date: '2023-12', value: 3.1 },
+                { date: '2024-03', value: 3.5 },
+                { date: '2024-06', value: 3.0 },
+                { date: '2024-09', value: 2.4 },
+                { date: '2024-12', value: 2.6 },
+                { date: '2025-03', value: 3.2 },
+                { date: '2025-06', value: 3.3 },
+                { date: '2025-09', value: 3.7 },
+                { date: '2025-10', value: 4.2 }
+            ],
+            current: 4.2,
+            trend: 'increasing'
+        },
+        global: {
+            historical: [
+                { date: '2023-01', value: 7.8 },
+                { date: '2023-03', value: 6.8 },
+                { date: '2023-06', value: 5.4 },
+                { date: '2023-09', value: 4.9 },
+                { date: '2023-12', value: 3.9 },
+                { date: '2024-03', value: 3.1 },
+                { date: '2024-06', value: 2.8 },
+                { date: '2024-09', value: 2.1 },
+                { date: '2024-12', value: 2.7 },
+                { date: '2025-03', value: 3.4 },
+                { date: '2025-06', value: 4.1 },
+                { date: '2025-09', value: 4.5 },
+                { date: '2025-10', value: 4.7 }
+            ],
+            current: 4.7,
+            trend: 'mixed'
+        }
+    }
+};
+
+// Chart color schemes
+const chartColors = {
+    primary: 'rgba(0, 212, 255, 1)',
+    primaryTransparent: 'rgba(0, 212, 255, 0.2)',
+    secondary: 'rgba(2, 0, 36, 1)',
+    success: 'rgba(40, 167, 69, 1)',
+    warning: 'rgba(255, 193, 7, 1)',
+    danger: 'rgba(220, 53, 69, 1)',
+    info: 'rgba(23, 162, 184, 1)',
+    light: 'rgba(248, 249, 250, 1)',
+    dark: 'rgba(52, 58, 64, 1)',
+    gradients: {
+        blue: ['rgba(0, 212, 255, 1)', 'rgba(2, 0, 36, 1)'],
+        warm: ['rgba(255, 193, 7, 1)', 'rgba(220, 53, 69, 1)'],
+        cool: ['rgba(40, 167, 69, 1)', 'rgba(23, 162, 184, 1)']
+    }
+};
 
 // Smooth scrolling utility function
 function enableSmoothScrolling() {
     document.documentElement.style.scrollBehavior = "smooth";
 }
 
-// Initialize smooth scrolling on page load
-document.addEventListener('DOMContentLoaded', enableSmoothScrolling);
+// Chart Management Class
+class ChartManager {
+    constructor() {
+        this.charts = {};
+        this.initializeCharts();
+    }
+
+    // Create gradient for charts
+    createGradient(ctx, colorStart, colorEnd) {
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, colorStart);
+        gradient.addColorStop(1, colorEnd);
+        return gradient;
+    }
+
+    // Initialize all charts
+    initializeCharts() {
+        // Small country charts
+        this.createCountryChart('ukChart', economicData.inflation.uk);
+        this.createCountryChart('euChart', economicData.inflation.eu);
+        this.createCountryChart('usChart', economicData.inflation.us);
+        this.createCountryChart('globalChart', economicData.inflation.global);
+
+        // Main charts
+        this.createGlobalInflationChart();
+        this.createInterestRatesChart();
+        this.createCommodityChart();
+        this.createInflationComponentsPie();
+        this.createSpendingDistributionPie();
+        this.createPerformanceRadar();
+        this.createLiveDataChart();
+    }
+
+    // Create small country inflation charts
+    createCountryChart(canvasId, data) {
+        const ctx = document.getElementById(canvasId);
+        if (!ctx) return;
+
+        const gradient = this.createGradient(ctx.getContext('2d'), chartColors.primary, chartColors.primaryTransparent);
+
+        this.charts[canvasId] = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.historical.map(item => {
+                    const date = new Date(item.date + '-01');
+                    return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+                }),
+                datasets: [{
+                    label: 'Inflation Rate (%)',
+                    data: data.historical.map(item => item.value),
+                    borderColor: chartColors.primary,
+                    backgroundColor: gradient,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: chartColors.secondary,
+                        bodyColor: chartColors.secondary,
+                        borderColor: chartColors.primary,
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        display: false,
+                        beginAtZero: false
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+    }
+
+    // Create main global inflation chart
+    createGlobalInflationChart() {
+        const ctx = document.getElementById('globalInflationChart');
+        if (!ctx) return;
+
+        const datasets = Object.entries(economicData.inflation).map(([country, data], index) => {
+            const colors = [chartColors.primary, chartColors.danger, chartColors.success, chartColors.warning];
+            return {
+                label: country.toUpperCase(),
+                data: data.historical.map(item => item.value),
+                borderColor: colors[index],
+                backgroundColor: colors[index] + '20',
+                borderWidth: 3,
+                fill: false,
+                tension: 0.4,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            };
+        });
+
+        this.charts.globalInflationChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: economicData.inflation.uk.historical.map(item => {
+                    const date = new Date(item.date + '-01');
+                    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                }),
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: chartColors.secondary,
+                        bodyColor: chartColors.secondary,
+                        borderColor: chartColors.primary,
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time Period'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Inflation Rate (%)'
+                        },
+                        beginAtZero: false
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+    }
+
+    // Create interest rates bar chart
+    createInterestRatesChart() {
+        const ctx = document.getElementById('interestRatesChart');
+        if (!ctx) return;
+
+        this.charts.interestRatesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Federal Reserve', 'European Central Bank', 'Bank of England', 'Bank of Canada'],
+                datasets: [{
+                    label: 'Interest Rate (%)',
+                    data: [5.375, 4.50, 5.25, 5.00],
+                    backgroundColor: [
+                        chartColors.primary,
+                        chartColors.success,
+                        chartColors.warning,
+                        chartColors.danger
+                    ],
+                    borderColor: [
+                        chartColors.primary,
+                        chartColors.success,
+                        chartColors.warning,
+                        chartColors.danger
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: chartColors.secondary,
+                        bodyColor: chartColors.secondary,
+                        borderColor: chartColors.primary,
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Interest Rate (%)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Create commodity line chart
+    createCommodityChart() {
+        const ctx = document.getElementById('commodityChart');
+        if (!ctx) return;
+
+        // Simulated commodity data over time
+        const commodityData = {
+            gold: [1980, 2010, 2045, 2031.50],
+            oil: [88.20, 89.15, 86.80, 87.45],
+            wheat: [5.80, 6.10, 6.35, 6.23],
+            copper: [8100, 8180, 8220, 8234]
+        };
+
+        const labels = ['Last Week', '3 Days Ago', 'Yesterday', 'Today'];
+
+        this.charts.commodityChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Gold ($/oz)',
+                        data: commodityData.gold,
+                        borderColor: '#FFD700',
+                        backgroundColor: '#FFD70020',
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Oil ($/barrel)',
+                        data: commodityData.oil,
+                        borderColor: '#8B4513',
+                        backgroundColor: '#8B451320',
+                        yAxisID: 'y1'
+                    },
+                    {
+                        label: 'Wheat ($/bushel)',
+                        data: commodityData.wheat,
+                        borderColor: '#DAA520',
+                        backgroundColor: '#DAA52020',
+                        yAxisID: 'y2'
+                    },
+                    {
+                        label: 'Copper ($/MT)',
+                        data: commodityData.copper,
+                        borderColor: '#B87333',
+                        backgroundColor: '#B8733320',
+                        yAxisID: 'y3'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Time Period'
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Gold Price ($)'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: false,
+                        position: 'right'
+                    },
+                    y2: {
+                        type: 'linear',
+                        display: false,
+                        position: 'right'
+                    },
+                    y3: {
+                        type: 'linear',
+                        display: false,
+                        position: 'right'
+                    }
+                }
+            }
+        });
+    }
+
+    // Create inflation components pie chart
+    createInflationComponentsPie() {
+        const ctx = document.getElementById('inflationComponentsPie');
+        if (!ctx) return;
+
+        this.charts.inflationComponentsPie = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Food & Beverages', 'Housing', 'Transportation', 'Medical Care', 'Recreation', 'Education', 'Other'],
+                datasets: [{
+                    data: [18.2, 42.4, 16.8, 8.7, 6.1, 2.9, 4.9],
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#4BC0C0',
+                        '#9966FF',
+                        '#FF9F40',
+                        '#FF6384'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Create spending distribution pie chart
+    createSpendingDistributionPie() {
+        const ctx = document.getElementById('spendingDistributionPie');
+        if (!ctx) return;
+
+        this.charts.spendingDistributionPie = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Essential Goods', 'Services', 'Discretionary', 'Savings & Investment'],
+                datasets: [{
+                    data: [35, 28, 22, 15],
+                    backgroundColor: [
+                        chartColors.danger,
+                        chartColors.primary,
+                        chartColors.warning,
+                        chartColors.success
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Create performance radar chart
+    createPerformanceRadar() {
+        const ctx = document.getElementById('performanceRadar');
+        if (!ctx) return;
+
+        this.charts.performanceRadar = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['GDP Growth', 'Employment', 'Price Stability', 'Trade Balance', 'Fiscal Health', 'Innovation'],
+                datasets: [{
+                    label: 'Current Performance',
+                    data: [6.8, 8.2, 5.4, 7.1, 6.9, 8.5],
+                    borderColor: chartColors.primary,
+                    backgroundColor: chartColors.primaryTransparent,
+                    borderWidth: 2,
+                    pointBackgroundColor: chartColors.primary,
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: {
+                            stepSize: 2
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Create live data stream chart
+    createLiveDataChart() {
+        const ctx = document.getElementById('liveDataChart');
+        if (!ctx) return;
+
+        const initialData = [];
+        const labels = [];
+        
+        // Initialize with some random data points
+        for (let i = 0; i < 20; i++) {
+            labels.push('');
+            initialData.push(Math.random() * 10 + 2);
+        }
+
+        this.charts.liveDataChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Live Inflation Indicator',
+                    data: initialData,
+                    borderColor: chartColors.primary,
+                    backgroundColor: chartColors.primaryTransparent,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 2,
+                    pointHoverRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 750
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        filter: function(tooltipItem) {
+                            return tooltipItem.dataIndex === tooltipItem.dataset.data.length - 1;
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Inflation Rate (%)'
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+
+        // Start the live data stream
+        this.startLiveDataStream();
+    }
+
+    // Start live data stream
+    startLiveDataStream() {
+        if (streamInterval) clearInterval(streamInterval);
+        
+        streamInterval = setInterval(() => {
+            if (!isStreamPaused && this.charts.liveDataChart) {
+                this.addLiveDataPoint();
+            }
+        }, 2000); // Update every 2 seconds
+    }
+
+    // Add new data point to live chart
+    addLiveDataPoint() {
+        const chart = this.charts.liveDataChart;
+        const newValue = Math.random() * 8 + 1; // Random value between 1-9
+        
+        // Add new data point
+        chart.data.datasets[0].data.push(newValue);
+        chart.data.labels.push('');
+        
+        // Remove old data points (keep last 50)
+        if (chart.data.datasets[0].data.length > 50) {
+            chart.data.datasets[0].data.shift();
+            chart.data.labels.shift();
+        }
+        
+        chart.update('none'); // Update without animation for smooth streaming
+        
+        // Update UI elements
+        this.updateStreamUI();
+    }
+
+    // Update stream UI elements
+    updateStreamUI() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        const countElement = document.getElementById('dataPointCount');
+        const timeElement = document.getElementById('lastUpdateTime');
+        
+        if (timeElement) {
+            timeElement.textContent = timeString;
+        }
+        
+        if (countElement && this.charts.liveDataChart) {
+            countElement.textContent = this.charts.liveDataChart.data.datasets[0].data.length;
+        }
+    }
+
+    // Toggle stream pause/play
+    toggleStream() {
+        isStreamPaused = !isStreamPaused;
+        const pauseBtn = document.getElementById('pauseStream');
+        if (pauseBtn) {
+            if (isStreamPaused) {
+                pauseBtn.innerHTML = '<i data-lucide="play"></i> Resume';
+            } else {
+                pauseBtn.innerHTML = '<i data-lucide="pause"></i> Pause';
+            }
+            // Re-initialize lucide icons for the updated button
+            lucide.createIcons();
+        }
+    }
+
+    // Reset stream data
+    resetStream() {
+        if (this.charts.liveDataChart) {
+            this.charts.liveDataChart.data.datasets[0].data = [];
+            this.charts.liveDataChart.data.labels = [];
+            
+            // Add initial data points
+            for (let i = 0; i < 20; i++) {
+                this.charts.liveDataChart.data.labels.push('');
+                this.charts.liveDataChart.data.datasets[0].data.push(Math.random() * 10 + 2);
+            }
+            
+            this.charts.liveDataChart.update();
+            this.updateStreamUI();
+        }
+    }
+
+    // Update chart time period
+    updateChartPeriod(period) {
+        // This would filter data based on the selected period
+        // For now, we'll just update the active button
+        document.querySelectorAll('.chart-control-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        const activeBtn = document.querySelector(`[data-period="${period}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+        }
+        
+        // Here you would filter the data and update the chart
+        console.log(`Updating chart to show ${period} period`);
+    }
+}
 
 // Scroll-triggered animation observer
 // Based on https://coolcssanimation.com/how-to-trigger-a-css-animation-on-scroll/
@@ -52,10 +776,11 @@ class ScrollAnimationManager {
     }
 }
 
-// Navigation enhancement
+// Enhanced Navigation Manager
 class NavigationManager {
     constructor() {
         this.initializeNavigation();
+        this.initializeChartControls();
     }
 
     initializeNavigation() {
@@ -64,6 +789,32 @@ class NavigationManager {
         navLinks.forEach(link => {
             link.addEventListener('click', this.handleSmoothScroll.bind(this));
         });
+    }
+
+    initializeChartControls() {
+        // Chart period controls
+        document.querySelectorAll('.chart-control-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const period = e.target.getAttribute('data-period');
+                globalCharts.updateChartPeriod(period);
+            });
+        });
+
+        // Stream controls
+        const pauseBtn = document.getElementById('pauseStream');
+        const resetBtn = document.getElementById('resetStream');
+
+        if (pauseBtn) {
+            pauseBtn.addEventListener('click', () => {
+                globalCharts.toggleStream();
+            });
+        }
+
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                globalCharts.resetStream();
+            });
+        }
     }
 
     handleSmoothScroll(event) {
@@ -80,7 +831,7 @@ class NavigationManager {
     }
 }
 
-// Card interaction enhancement
+// Enhanced Card Manager with chart integration
 class CardManager {
     constructor() {
         this.initializeCards();
@@ -98,10 +849,11 @@ class CardManager {
 
     handleCardClick(event) {
         const card = event.currentTarget;
-        const countryName = card.querySelector('.country-name').textContent;
+        const country = card.getAttribute('data-country');
         
-        // Enhanced functionality - show detailed inflation data
-        this.showInflationDetails(countryName);
+        if (country && economicData.inflation[country]) {
+            this.showDetailedInflationModal(country);
+        }
         
         // Add visual feedback
         card.style.transform = 'scale(0.98)';
@@ -117,23 +869,188 @@ class CardManager {
         }
     }
 
-    showInflationDetails(country) {
-        // Placeholder for detailed inflation data display
-        const detailsData = {
-            'United Kingdom': { rate: '6.1%', trend: 'Decreasing', lastUpdate: 'Oct 2025' },
-            'European Union': { rate: '3.8%', trend: 'Stable', lastUpdate: 'Oct 2025' },
-            'United States': { rate: '4.2%', trend: 'Increasing', lastUpdate: 'Oct 2025' },
-            'Global': { rate: '4.7%', trend: 'Mixed', lastUpdate: 'Oct 2025' }
+    showDetailedInflationModal(country) {
+        const data = economicData.inflation[country];
+        const countryNames = {
+            uk: 'United Kingdom',
+            eu: 'European Union',
+            us: 'United States',
+            global: 'Global'
         };
 
-        const data = detailsData[country];
-        if (data) {
-            alert(`${country} Inflation Data:\nRate: ${data.rate}\nTrend: ${data.trend}\nLast Updated: ${data.lastUpdate}`);
+        const modalContent = `
+            <div class="modal-overlay" id="inflationModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>${countryNames[country]} - Detailed Inflation Data</h3>
+                        <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-stats">
+                            <div class="stat-card">
+                                <span class="stat-label">Current Rate</span>
+                                <span class="stat-value">${data.current}%</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Trend</span>
+                                <span class="stat-value trend-${data.trend}">${data.trend}</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">12-Month High</span>
+                                <span class="stat-value">${Math.max(...data.historical.map(d => d.value)).toFixed(1)}%</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">12-Month Low</span>
+                                <span class="stat-value">${Math.min(...data.historical.map(d => d.value)).toFixed(1)}%</span>
+                            </div>
+                        </div>
+                        <div class="modal-chart">
+                            <canvas id="modalChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Add modal to body
+        document.body.insertAdjacentHTML('beforeend', modalContent);
+
+        // Create chart in modal
+        setTimeout(() => {
+            this.createModalChart(country, data);
+        }, 100);
+
+        // Add styles if not already present
+        if (!document.getElementById('modalStyles')) {
+            const styles = document.createElement('style');
+            styles.id = 'modalStyles';
+            styles.textContent = `
+                .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 10000;
+                }
+                .modal-content {
+                    background: white;
+                    border-radius: 15px;
+                    max-width: 600px;
+                    width: 90%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                }
+                .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1.5rem;
+                    border-bottom: 1px solid #eee;
+                }
+                .modal-header h3 {
+                    margin: 0;
+                    color: #2c3e50;
+                }
+                .modal-close {
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #7f8c8d;
+                }
+                .modal-body {
+                    padding: 1.5rem;
+                }
+                .modal-stats {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                    gap: 1rem;
+                    margin-bottom: 2rem;
+                }
+                .stat-card {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 1rem;
+                    background: #f8f9fa;
+                    border-radius: 8px;
+                    text-align: center;
+                }
+                .stat-label {
+                    font-size: 0.9rem;
+                    color: #6c757d;
+                    margin-bottom: 0.5rem;
+                }
+                .stat-value {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: #2c3e50;
+                }
+                .trend-increasing { color: #dc3545; }
+                .trend-decreasing { color: #28a745; }
+                .trend-stable { color: #ffc107; }
+                .trend-mixed { color: #6c757d; }
+                .modal-chart {
+                    background: #f8f9fa;
+                    border-radius: 8px;
+                    padding: 1rem;
+                }
+            `;
+            document.head.appendChild(styles);
         }
+    }
+
+    createModalChart(country, data) {
+        const ctx = document.getElementById('modalChart');
+        if (!ctx) return;
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.historical.map(item => {
+                    const date = new Date(item.date + '-01');
+                    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                }),
+                datasets: [{
+                    label: 'Inflation Rate (%)',
+                    data: data.historical.map(item => item.value),
+                    borderColor: chartColors.primary,
+                    backgroundColor: chartColors.primaryTransparent,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Inflation Rate (%)'
+                        }
+                    }
+                }
+            }
+        });
     }
 }
 
-// Inflation Calculator
+// Enhanced Inflation Calculator
 class InflationCalculator {
     constructor() {
         this.initializeCalculator();
@@ -173,7 +1090,10 @@ class InflationCalculator {
         const powerLostElement = document.getElementById('power-lost');
 
         if (futureValueElement) {
-            futureValueElement.textContent = `$${futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            futureValueElement.textContent = `$${futureValue.toLocaleString('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            })}`;
         }
 
         if (powerLostElement) {
@@ -323,9 +1243,12 @@ class PerformanceManager {
 
 // Initialize all managers when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    // Enable smooth scrolling first
+    enableSmoothScrolling();
+    
+    // Initialize all managers
     new ScrollAnimationManager();
     new NavigationManager();
-    new CardManager();
     new PerformanceManager();
     new InflationCalculator();
     new ExpertQuoteCarousel();
@@ -333,10 +1256,23 @@ document.addEventListener('DOMContentLoaded', () => {
     new NewsManager();
     new EducationManager();
     
-    console.log('Brr News fully initialized with all features!');
+    // Initialize charts (with delay to ensure DOM is ready)
+    setTimeout(() => {
+        globalCharts = new ChartManager();
+        new CardManager(); // Initialize after charts are ready
+    }, 100);
     
-    // Add some startup animations
+    console.log('Brr News fully initialized with dynamic charts and enhanced features!');
+    
+    // Add startup animations
     setTimeout(() => {
         document.body.classList.add('loaded');
-    }, 100);
+    }, 200);
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (streamInterval) {
+        clearInterval(streamInterval);
+    }
 });
