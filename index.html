@@ -10,37 +10,124 @@
     <title>Inflation News</title>
 </head>
 <body>
-    <!--Header -w/logo, search bar, and burger navmenu that opens sidebar - and also Main Heading Section-->
-    <section>
-        <header>
-            <img class="box bounce-6" id="logo" src="assets/logo.png" alt="logo" width="125" height="125">
-            <div id="header-container">                         
-                <div id="nav-container">
-                    <nav>
-                        <ul>
-                            <li><a href=""></a>Home</li>
-                            <li><a href=""></a>About</li>
-                            <li><a href=""></a>Rates</li>
-                            <li><a href=""></a>Charts</li>
-                        <div class="search-container">
-                            <form action="/action_page.php">
-                                <input type="text" placeholder="Search.." name="search">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                        </ul>                  
-                    </nav>
+    <!--Header with logo, navigation, and search-->
+    <header>
+        <div class="header-content">
+            <img class="logo bounce-6" id="logo" src="assets/logo.png" alt="Brr News Logo" width="125" height="125">
+            <div class="header-container">                         
+                <nav class="nav-container">
+                    <ul class="nav-list">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#rates">Rates</a></li>
+                        <li><a href="#charts">Charts</a></li>\n                        <li><a href="#about">About</a></li>
+                    </ul>
+                    <div class="search-container">
+                        <form action="/search" method="GET">
+                            <input type="text" placeholder="Search.." name="search" aria-label="Search">
+                            <button type="submit" aria-label="Search"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>                  
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--Main Title and Subtitle-->
+    <section class="hero-section" id="home">
+        <div class="titles">
+            <h1 class="main-title">Brr News</h1>  
+            <h2 class="subtitle">Money Printrr Go Brr</h2>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">4.2%</span>
+                    <span class="stat-label">Current US Inflation</span>
                 </div>
-                
+                <div class="stat-item">
+                    <span class="stat-number">3.8%</span>
+                    <span class="stat-label">EU Inflation Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6.1%</span>
+                    <span class="stat-label">UK Inflation Rate</span>
+                </div>
             </div>
-        </header>
+        </div>
     </section>
-        <!--Main Title and Subtitle-->
-    <section>
-            <div id="titles">
-                <h1 class="gradient-text">Brr News</h1>  
-                <h2>Money Printrr Go Brr</h2>
+
+    <!--Breaking News Ticker-->
+    <section class="news-ticker-section">
+        <div class="ticker-container">
+            <div class="ticker-label">BREAKING:</div>
+            <div class="ticker-content">
+                <div class="ticker-item">Federal Reserve signals potential rate cuts amid inflation concerns</div>
+                <div class="ticker-item">European Central Bank maintains hawkish stance on monetary policy</div>
+                <div class="ticker-item">Global food prices surge 12% year-over-year amid supply chain disruptions</div>
+                <div class="ticker-item">Cryptocurrency markets react to institutional adoption of CBDCs</div>
             </div>
+        </div>
+    </section>
+
+    <!--Latest News Section-->
+    <section class="news-section" id="news">
+        <div class="content-container">
+            <header class="section-header">
+                <h2 class="section-title">Latest Economic News</h2>
+                <p class="section-subtitle">Stay informed with real-time updates on inflation and monetary policy</p>
+            </header>
+            
+            <div class="news-grid">
+                <article class="news-card featured">
+                    <div class="news-image">
+                        <img src="assets/pexels-anni-roenkae-2156881.jpg" alt="Federal Reserve Building" loading="lazy">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">MONETARY POLICY</span>
+                        <h3 class="news-title">Fed Chair Signals Cautious Approach to Interest Rate Adjustments</h3>
+                        <p class="news-excerpt">In a recent address, Federal Reserve Chair emphasized the importance of data-driven decisions as inflation metrics show mixed signals across different sectors...</p>
+                        <div class="news-meta">
+                            <span class="news-date">October 15, 2025</span>
+                            <span class="news-source">Reuters</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-content">
+                        <span class="news-category">GLOBAL MARKETS</span>
+                        <h3 class="news-title">European Inflation Reaches 18-Month Low</h3>
+                        <p class="news-excerpt">Eurozone inflation fell to 3.8% in September, marking the lowest level since early 2024...</p>
+                        <div class="news-meta">
+                            <span class="news-date">October 14, 2025</span>
+                            <span class="news-source">Bloomberg</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-content">
+                        <span class="news-category">COMMODITIES</span>
+                        <h3 class="news-title">Oil Prices Stabilize After Supply Disruption Concerns</h3>
+                        <p class="news-excerpt">Crude oil futures found stability as markets digest geopolitical tensions and inventory data...</p>
+                        <div class="news-meta">
+                            <span class="news-date">October 14, 2025</span>
+                            <span class="news-source">Financial Times</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-content">
+                        <span class="news-category">CRYPTOCURRENCY</span>
+                        <h3 class="news-title">Central Bank Digital Currencies Gain Momentum</h3>
+                        <p class="news-excerpt">Major economies accelerate CBDC development as digital payment adoption continues to rise...</p>
+                        <div class="news-meta">
+                            <span class="news-date">October 13, 2025</span>
+                            <span class="news-source">CoinDesk</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
     </section>
 <main>
         <!--Inflation Rate Section-->
@@ -69,67 +156,243 @@
             <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Hyperinflation is going to change everything. It’s happening.</p>&mdash; jack⚡️ (@jack) <a href="https://twitter.com/jack/status/1451733913961783299?ref_src=twsrc%5Etfw">October 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>  
-        <div class="card-container">
-            <!--Card Two United Kingdom-->
-            <div class="card">
+        <div class="card-container" id="rates">
+            <!--United Kingdom Card-->
+            <article class="card">
                 <div class="card-content">
-                <h3>UK</h3>
-                <img src="assets/bar-chart.png" alt="Avatar" style="width:100px">
-                    <div class="info-container">
-                        <h4><b>United Kingdom</b></h4> 
-                            <p id="p2">Inflation Rates</p>
-                        </div> 
-                    </div>
-            </div>
-           <!--Card One European Union-->
-           <div class="card">
-            <div class="card-content">
-            <h3>EU</h3>
-            <img src="assets/bar-chart.png" alt="Avatar" style="width:100px">
-                <div class="info-container">
-                    <h4><b>European Union</b></h4> 
-                        <p id="p2">Inflation Rates</p>
+                    <h3 class="card-title">UK</h3>
+                    <img src="assets/bar-chart.png" alt="UK inflation chart" class="chart-image">
+                    <div class="card-info">
+                        <h4 class="country-name">United Kingdom</h4> 
+                        <p class="card-description">Inflation Rates</p>
                     </div> 
                 </div>
+            </article>
+            <!--European Union Card-->
+            <article class="card">
+                <div class="card-content">
+                    <h3 class="card-title">EU</h3>
+                    <img src="assets/bar-chart.png" alt="EU inflation chart" class="chart-image">
+                    <div class="card-info">
+                        <h4 class="country-name">European Union</h4> 
+                        <p class="card-description">Inflation Rates</p>
+                    </div> 
+                </div>
+            </article>
+            <!--United States Card-->
+            <article class="card">
+                <div class="card-content">
+                    <h3 class="card-title">US</h3>
+                    <img src="assets/bar-chart.png" alt="US inflation chart" class="chart-image">
+                    <div class="card-info">
+                        <h4 class="country-name">United States</h4> 
+                        <p class="card-description">Inflation Rates</p>
+                    </div> 
+                </div>
+            </article>
+            <!--Global Card-->
+            <article class="card">
+                <div class="card-content">
+                    <h3 class="card-title">Global</h3>
+                    <img src="assets/bar-chart.png" alt="Global inflation chart" class="chart-image">
+                    <div class="card-info">
+                        <h4 class="country-name">Global</h4> 
+                        <p class="card-description">Inflation Rates</p>
+                    </div> 
+                </div>
+            </article>        
         </div>
-            <!--Card Two United States-->
-            <div class="card">
-                <div class="card-content">
-                <h3>US</h3>
-                <img src="assets/bar-chart.png" alt="Avatar" style="width:100px">
-                    <div class="info-container">
-                        <h4><b>United States</b></h4> 
-                            <p id="p2">Inflation Rates</p>
-                        </div> 
+    </section>
+    
+    <!--Charts and Data Section-->
+    <section class="charts-section" id="charts">
+        <div class="content-container">
+            <header class="section-header">
+                <h2 class="section-title">Economic Data & Charts</h2>
+                <p class="section-subtitle">Visual analysis of key economic indicators and trends</p>
+            </header>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3 class="chart-title">Global Inflation Trends (2020-2025)</h3>
+                    <div class="chart-placeholder">
+                        <img src="assets/bar-chart.png" alt="Global inflation chart" class="chart-image">
+                        <div class="chart-overlay">
+                            <div class="chart-data">
+                                <div class="data-point">
+                                    <span class="year">2020</span>
+                                    <span class="value">0.7%</span>
+                                </div>
+                                <div class="data-point">
+                                    <span class="year">2021</span>
+                                    <span class="value">4.7%</span>
+                                </div>
+                                <div class="data-point">
+                                    <span class="year">2022</span>
+                                    <span class="value">8.0%</span>
+                                </div>
+                                <div class="data-point">
+                                    <span class="year">2023</span>
+                                    <span class="value">4.1%</span>
+                                </div>
+                                <div class="data-point">
+                                    <span class="year">2024</span>
+                                    <span class="value">3.2%</span>
+                                </div>
+                                <div class="data-point current">
+                                    <span class="year">2025</span>
+                                    <span class="value">4.2%</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">Central Bank Interest Rates</h3>
+                    <div class="rates-comparison">
+                        <div class="rate-item">
+                            <div class="rate-flag">🇺🇸</div>
+                            <div class="rate-info">
+                                <span class="rate-country">Federal Reserve</span>
+                                <span class="rate-value">5.25% - 5.50%</span>
+                            </div>
+                        </div>
+                        <div class="rate-item">
+                            <div class="rate-flag">🇪🇺</div>
+                            <div class="rate-info">
+                                <span class="rate-country">European Central Bank</span>
+                                <span class="rate-value">4.50%</span>
+                            </div>
+                        </div>
+                        <div class="rate-item">
+                            <div class="rate-flag">🇬🇧</div>
+                            <div class="rate-info">
+                                <span class="rate-country">Bank of England</span>
+                                <span class="rate-value">5.25%</span>
+                            </div>
+                        </div>
+                        <div class="rate-item">
+                            <div class="rate-flag">🇨🇦</div>
+                            <div class="rate-info">
+                                <span class="rate-country">Bank of Canada</span>
+                                <span class="rate-value">5.00%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">Commodity Price Index</h3>
+                    <div class="commodity-tracker">
+                        <div class="commodity-item">
+                            <span class="commodity-name">Gold</span>
+                            <span class="commodity-price">$2,031.50</span>
+                            <span class="commodity-change positive">+1.2%</span>
+                        </div>
+                        <div class="commodity-item">
+                            <span class="commodity-name">Oil (WTI)</span>
+                            <span class="commodity-price">$87.45</span>
+                            <span class="commodity-change negative">-0.8%</span>
+                        </div>
+                        <div class="commodity-item">
+                            <span class="commodity-name">Wheat</span>
+                            <span class="commodity-price">$6.23/bu</span>
+                            <span class="commodity-change positive">+3.1%</span>
+                        </div>
+                        <div class="commodity-item">
+                            <span class="commodity-name">Copper</span>
+                            <span class="commodity-price">$8,234/MT</span>
+                            <span class="commodity-change positive">+0.5%</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--Card Two Global-->
-            <div class="card">
-                <div class="card-content">
-                <h3>Global</h3>
-                <img src="assets/bar-chart.png" alt="Avatar" style="width:100px">
-                    <div class="info-container">
-                        <h4><b>Global</b></h4> 
-                            <p id="p2">Inflation Rates</p>
-                        </div> 
+        </div>
+    </section>
+    
+    <!--Educational Resources Section-->
+    <section class="education-section" id="about">
+        <div class="content-container">
+            <header class="section-header">
+                <h2 class="section-title">Understanding Inflation</h2>
+                <p class="section-subtitle">Essential knowledge for navigating economic uncertainty</p>
+            </header>
+            
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="card-icon">📈</div>
+                    <h3>What is Inflation?</h3>
+                    <p>Inflation is the rate at which the general level of prices for goods and services rises, eroding the purchasing power of money over time.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+                
+                <div class="education-card">
+                    <div class="card-icon">🏦</div>
+                    <h3>Central Bank Roles</h3>
+                    <p>Central banks use monetary policy tools like interest rates and money supply to maintain price stability and economic growth.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+                
+                <div class="education-card">
+                    <div class="card-icon">💰</div>
+                    <h3>Types of Inflation</h3>
+                    <p>Demand-pull, cost-push, and built-in inflation each have different causes and require different policy responses.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+                
+                <div class="education-card">
+                    <div class="card-icon">🌍</div>
+                    <h3>Global Impact</h3>
+                    <p>Inflation affects international trade, currency values, and cross-border economic relationships in complex ways.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="inflation-calculator">
+                <h3>Inflation Impact Calculator</h3>
+                <div class="calculator-form">
+                    <div class="input-group">
+                        <label for="initial-amount">Initial Amount ($)</label>
+                        <input type="number" id="initial-amount" placeholder="10000" value="10000">
                     </div>
-            </div>        
+                    <div class="input-group">
+                        <label for="inflation-rate">Annual Inflation Rate (%)</label>
+                        <input type="number" id="inflation-rate" placeholder="3.5" value="3.5" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label for="years">Years</label>
+                        <input type="number" id="years" placeholder="10" value="10">
+                    </div>
+                    <button class="calculate-btn">Calculate Impact</button>
+                    <div class="result-display">
+                        <div class="result-item">
+                            <span class="result-label">Future Value:</span>
+                            <span class="result-value" id="future-value">$14,105.99</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Purchasing Power Lost:</span>
+                            <span class="result-value negative" id="power-lost">-29.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </main>
-    <section>
-        <Footer>
-            <div id="footer-container">
-                <div>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" target="_blank"title="Flaticon">www.flaticon.com</a></div>
-                <a href = "https://www.statbureau.org" target="_blank" >www.statbureau.org</a>
-                <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">www.flaticon.com</a></div>
-            </div>
-            <div class="stage">
-                <div class="box bounce-6"></div>
-            </div>
-            
-        </Footer>
-    </section>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <p>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">www.flaticon.com</a></p>
+            <a href="https://www.statbureau.org" target="_blank">www.statbureau.org</a>
+            <p>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">www.flaticon.com</a></p>
+        </div>
+        <div class="footer-animation">
+            <div class="box bounce-6"></div>
+        </div>
+    </div>
+</footer>
     <script src="scripts/main.js"></script>
 </body>
 </html>
