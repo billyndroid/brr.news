@@ -1125,13 +1125,184 @@ class ExpertQuoteCarousel {
     }
 }
 
-// News Ticker Animation Control
+// Enhanced News Ticker Animation Control with Daily Updates
 class NewsTickerManager {
     constructor() {
+        this.newsDatabase = this.createNewsDatabase();
+        this.currentNewsSet = [];
+        this.lastUpdateDate = null;
         this.initializeTicker();
+        this.updateDailyNews();
+        this.startDailyUpdateCheck();
+    }
+
+    createNewsDatabase() {
+        return {
+            inflation: [
+                "Global inflation reaches 18-month low as supply chains stabilize worldwide",
+                "Core inflation metrics show persistent strength in services sector across major economies",
+                "Food price inflation accelerates due to adverse weather conditions in key agricultural regions",
+                "Energy inflation moderates as oil prices stabilize following geopolitical tensions",
+                "Housing costs drive inflation higher in major metropolitan areas globally",
+                "Medical care inflation outpaces general price increases for third consecutive month",
+                "Transportation costs surge as fuel prices and vehicle shortages persist",
+                "Wage-price spiral concerns emerge as labor markets remain tight globally",
+                "Import price inflation eases as shipping costs normalize after pandemic disruptions",
+                "Inflation expectations among consumers remain elevated despite recent moderation",
+                "Base effects contribute to volatile inflation readings as pandemic comparisons fade",
+                "Regional inflation disparities widen as local economic conditions diverge significantly"
+            ],
+            interestRates: [
+                "Federal Reserve signals potential rate cuts amid growing recession concerns and cooling inflation",
+                "European Central Bank maintains hawkish stance on monetary policy despite economic headwinds",
+                "Bank of England pauses rate hikes as UK economy shows signs of slowing momentum",
+                "Central bank coordination emerges as key theme in global monetary policy discussions",
+                "Real interest rates turn positive for first time in three years across major economies",
+                "Yield curve inversion deepens as short-term rates exceed long-term bond yields significantly",
+                "Emerging market central banks face dollar strength pressures on domestic monetary policy",
+                "Corporate borrowing costs reach highest levels since 2008 financial crisis peak",
+                "Mortgage rates surge past 7% threshold, cooling housing markets in developed economies",
+                "Central bank digital currencies gain momentum as policy tools for monetary transmission",
+                "Forward guidance effectiveness questioned as market volatility persists despite clear communication",
+                "Term structure shifts signal changing expectations for long-term monetary policy stance"
+            ],
+            monetary: [
+                "Quantitative easing programs face scrutiny as asset purchases approach sustainable limits",
+                "Digital payment adoption accelerates, reshaping traditional monetary transmission mechanisms significantly",
+                "Currency volatility increases as divergent monetary policies create cross-border capital flows",
+                "Government bond markets experience unprecedented volatility amid shifting central bank policies",
+                "Money supply growth moderates as central banks reduce accommodative monetary policy stance",
+                "Banking sector profitability improves as net interest margins expand with higher rates",
+                "Shadow banking system grows as traditional monetary policy transmission channels evolve",
+                "International monetary coordination becomes critical as spillover effects intensify globally",
+                "Fiscal-monetary policy coordination tested as government debt sustainability concerns mount",
+                "Alternative monetary frameworks gain academic and policy attention amid conventional limits",
+                "Reserve currency dynamics shift as geopolitical tensions reshape international monetary system",
+                "Cryptocurrency regulation impacts monetary policy effectiveness as digital assets gain mainstream adoption"
+            ],
+            markets: [
+                "Commodity markets experience heightened volatility as inflation hedging demand surges globally",
+                "Bond market liquidity concerns emerge as central bank balance sheets begin normalization process",
+                "Equity market valuations adjust to higher discount rates amid monetary policy tightening cycle",
+                "Currency markets reflect divergent economic outlooks and monetary policy trajectories worldwide",
+                "Real estate investment trusts face headwinds as interest rate sensitivity becomes prominent factor",
+                "Gold prices surge as inflation hedge demand outweighs rising opportunity costs significantly",
+                "Energy market dynamics shift as transition policies intersect with immediate supply constraints",
+                "Agricultural commodity prices remain elevated due to climate and geopolitical supply disruptions",
+                "Financial market fragmentation increases as regional economic conditions diverge substantially",
+                "Derivatives markets expand as institutions seek protection against interest rate and inflation volatility",
+                "Emerging market assets face pressure from developed market monetary policy normalization processes",
+                "Market-based inflation expectations show divergence from survey measures, complicating policy interpretation"
+            ]
+        };
+    }
+
+    getDayOfYear() {
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = now - start;
+        return Math.floor(diff / (1000 * 60 * 60 * 24));
+    }
+
+    selectDailyNews() {
+        const dayOfYear = this.getDayOfYear();
+        const categories = Object.keys(this.newsDatabase);
+        const selectedNews = [];
+
+        // Use day of year as seed for consistent daily selection
+        categories.forEach((category, index) => {
+            const newsArray = this.newsDatabase[category];
+            const newsIndex = (dayOfYear + index * 3) % newsArray.length;
+            selectedNews.push(newsArray[newsIndex]);
+        });
+
+        // Add some randomization while maintaining consistency for the day
+        const additionalNewsIndex = (dayOfYear * 7) % this.newsDatabase.inflation.length;
+        selectedNews.push(this.newsDatabase.inflation[additionalNewsIndex]);
+
+        return selectedNews;
+    }
+
+    updateDailyNews() {
+        const today = new Date().toDateString();
+        
+        if (this.lastUpdateDate !== today) {
+            this.currentNewsSet = this.selectDailyNews();
+            this.lastUpdateDate = today;
+            this.updateTickerContent();
+            
+            // Store in localStorage for persistence
+            localStorage.setItem('brr-news-ticker-date', today);
+            localStorage.setItem('brr-news-ticker-content', JSON.stringify(this.currentNewsSet));
+            
+            console.log('Daily news ticker updated for:', today);
+        }
+    }
+
+    loadStoredNews() {
+        const storedDate = localStorage.getItem('brr-news-ticker-date');
+        const storedContent = localStorage.getItem('brr-news-ticker-content');
+        const today = new Date().toDateString();
+
+        if (storedDate === today && storedContent) {
+            this.currentNewsSet = JSON.parse(storedContent);
+            this.lastUpdateDate = storedDate;
+            return true;
+        }
+        return false;
+    }
+
+    updateTickerContent() {
+        const tickerContent = document.querySelector('.ticker-content');
+        if (tickerContent && this.currentNewsSet.length > 0) {
+            // Clear existing content
+            tickerContent.innerHTML = '';
+            
+            // Add new news items
+            this.currentNewsSet.forEach(newsItem => {
+                const tickerItem = document.createElement('div');
+                tickerItem.className = 'ticker-item';
+                tickerItem.textContent = newsItem;
+                tickerContent.appendChild(tickerItem);
+            });
+
+            // Restart animation
+            tickerContent.style.animation = 'none';
+            tickerContent.offsetHeight; // Trigger reflow
+            tickerContent.style.animation = 'scroll-ticker 40s linear infinite';
+        }
+    }
+
+    startDailyUpdateCheck() {
+        // Check for updates every hour
+        setInterval(() => {
+            this.updateDailyNews();
+        }, 60 * 60 * 1000);
+
+        // Also check at midnight
+        const now = new Date();
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 1, 0, 0); // 00:01 AM
+
+        const msUntilTomorrow = tomorrow.getTime() - now.getTime();
+        setTimeout(() => {
+            this.updateDailyNews();
+            // Set up daily interval after first midnight update
+            setInterval(() => {
+                this.updateDailyNews();
+            }, 24 * 60 * 60 * 1000);
+        }, msUntilTomorrow);
     }
 
     initializeTicker() {
+        // Load stored news first
+        if (!this.loadStoredNews()) {
+            this.updateDailyNews();
+        } else {
+            this.updateTickerContent();
+        }
+
         const ticker = document.querySelector('.ticker-content');
         if (ticker) {
             // Pause animation on hover
@@ -1142,6 +1313,93 @@ class NewsTickerManager {
             ticker.addEventListener('mouseleave', () => {
                 ticker.style.animationPlayState = 'running';
             });
+
+            // Add click handler for manual refresh
+            ticker.addEventListener('click', () => {
+                this.manualRefresh();
+            });
+        }
+
+        // Add visual indicator for daily updates
+        this.addUpdateIndicator();
+    }
+
+    manualRefresh() {
+        const categories = Object.keys(this.newsDatabase);
+        const randomNews = [];
+        
+        // Get random news items for immediate refresh
+        categories.forEach(category => {
+            const newsArray = this.newsDatabase[category];
+            const randomIndex = Math.floor(Math.random() * newsArray.length);
+            randomNews.push(newsArray[randomIndex]);
+        });
+
+        this.currentNewsSet = randomNews;
+        this.updateTickerContent();
+        
+        // Show refresh indicator
+        this.showRefreshIndicator();
+    }
+
+    addUpdateIndicator() {
+        const tickerContainer = document.querySelector('.ticker-container');
+        if (tickerContainer && !document.querySelector('.ticker-update-time')) {
+            const updateTime = document.createElement('div');
+            updateTime.className = 'ticker-update-time';
+            updateTime.innerHTML = `<i data-lucide="clock"></i> Updated: ${new Date().toLocaleDateString()}`;
+            tickerContainer.appendChild(updateTime);
+            
+            // Initialize lucide icons for the new element
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+    }
+
+    showRefreshIndicator() {
+        const tickerContainer = document.querySelector('.ticker-container');
+        if (tickerContainer) {
+            // Create temporary refresh indicator
+            const refreshIndicator = document.createElement('div');
+            refreshIndicator.textContent = 'NEWS REFRESHED';
+            refreshIndicator.style.cssText = `
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #28a745;
+                color: white;
+                padding: 0.3rem 1rem;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                z-index: 1000;
+                animation: fadeInOut 2s ease-in-out;
+            `;
+            
+            tickerContainer.style.position = 'relative';
+            tickerContainer.appendChild(refreshIndicator);
+            
+            // Add CSS animation if not exists
+            if (!document.querySelector('#refresh-animation-style')) {
+                const style = document.createElement('style');
+                style.id = 'refresh-animation-style';
+                style.textContent = `
+                    @keyframes fadeInOut {
+                        0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+                        50% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                        100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            setTimeout(() => {
+                if (refreshIndicator.parentNode) {
+                    refreshIndicator.remove();
+                }
+            }, 2000);
         }
     }
 }
