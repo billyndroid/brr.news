@@ -81,6 +81,79 @@
         </div>
     </section>
 
+    <!--Educational Resources Section-->
+    <section class="education-section" id="about">
+        <div class="content-container">
+            <header class="section-header">
+                <div class="section-icon"><i data-lucide="graduation-cap"></i></div>
+                <h2 class="section-title">Understanding Inflation</h2>
+                <p class="section-subtitle">Essential knowledge for navigating economic uncertainty</p>
+            </header>
+            
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="card-icon"><i data-lucide="trending-up"></i></div>
+                    <h3>What is Inflation?</h3>
+                    <p>Inflation is the rate at which the general level of prices for goods and services rises, eroding the purchasing power of money over time.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+                
+                <div class="education-card">
+                    <div class="card-icon"><i data-lucide="building-2"></i></div>
+                    <h3>Central Bank Roles</h3>
+                    <p>Central banks use monetary policy tools like interest rates and money supply to maintain price stability and economic growth.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+                
+                <div class="education-card">
+                    <div class="card-icon"><i data-lucide="coins"></i></div>
+                    <h3>Types of Inflation</h3>
+                    <p>Demand-pull, cost-push, and built-in inflation each have different causes and require different policy responses.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+                
+                <div class="education-card">
+                    <div class="card-icon"><i data-lucide="globe"></i></div>
+                    <h3>Global Impact</h3>
+                    <p>Inflation affects international trade, currency values, and cross-border economic relationships in complex ways.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="inflation-calculator">
+                <div class="calculator-header">
+                    <i data-lucide="calculator"></i>
+                    <h3>Inflation Impact Calculator</h3>
+                </div>
+                <div class="calculator-form">
+                    <div class="input-group">
+                        <label for="initial-amount">Initial Amount ($)</label>
+                        <input type="number" id="initial-amount" placeholder="10000" value="10000">
+                    </div>
+                    <div class="input-group">
+                        <label for="inflation-rate">Annual Inflation Rate (%)</label>
+                        <input type="number" id="inflation-rate" placeholder="3.5" value="3.5" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label for="years">Years</label>
+                        <input type="number" id="years" placeholder="10" value="10">
+                    </div>
+                    <button class="calculate-btn">Calculate Impact</button>
+                    <div class="result-display">
+                        <div class="result-item">
+                            <span class="result-label">Future Value:</span>
+                            <span class="result-value" id="future-value">$14,105.99</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Purchasing Power Lost:</span>
+                            <span class="result-value negative" id="power-lost">-29.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!--Global Debt Clocks Section-->
     <section class="debt-clock-section" id="debt-clocks">
         <div class="content-container">
@@ -408,35 +481,31 @@
             </div>
         </div>
     </section>
-<main>
-        <!--Inflation Rate Section-->
-    <section id="inflation">
-        <div class="block-container">
+
+    <!--Inflation Rate Section-->
+    <section class="inflation-section" id="inflation">
+        <div class="content-container">
             <header class="section-header">
                 <div class="section-icon"><i data-lucide="trending-up"></i></div>
                 <h2 class="section-title">Inflation Rate Dashboard</h2>
                 <p class="section-subtitle">Track real-time inflation data and monetary policy impacts</p>
             </header>
-                <!--<div class="square-wrapper">
-                    <div class="square square-transition"></div>
-                  </div>
-                  <section></section>
-<div id="scroll-animation-wrapper" class="container in-view">
-	<div class="element"></div>-->
-</div>
-<section></section>
+            
+            <div class="content-block">
                 <div class="p-container">
-                <p class="modern-monetary-theory-text">Modern Monetary theory suggests... The IMF have indicated a 'great reset'.  There are many questions over whether or not this is a solution.</p>
+                    <p class="modern-monetary-theory-text">Modern Monetary theory suggests... The IMF have indicated a 'great reset'.  There are many questions over whether or not this is a solution.</p>
+                </div>
+                <div class="p-container-slower">
+                    <p class="modern-monetary-theory-text">Twitter/Square CEO, Jack was critisized recently for suggesting that we may see hyperinflation as a result of quantitative easing - when a central bank prints more money to inject into the system and prevent recession.</p>
+                </div>
+                <div class="p-container-slowest">
+                </div>
+                <div class="jack-tweet">
+                    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Hyperinflation is going to change everything. It's happening.</p>&mdash; jack⚡️ (@jack) <a href="https://twitter.com/jack/status/1451733913961783299?ref_src=twsrc%5Etfw">October 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
             </div>
-            <div class="p-container-slower"">
-                <p class="modern-monetary-theory-text">Twitter/Square CEO, Jack was critisized recently for suggesting that we may see hyperinflation as a result of quantitative easing - when a central bank prints more money to inject into the system and prevent recession.</p>
-            </div>
-            <div class="p-container-slowest">
-            </div>
-            <div class="jack-tweet">
-            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Hyperinflation is going to change everything. It’s happening.</p>&mdash; jack⚡️ (@jack) <a href="https://twitter.com/jack/status/1451733913961783299?ref_src=twsrc%5Etfw">October 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-    </div>  
+        
         <div class="card-container" id="rates">
             <!--United Kingdom Card-->
             <article class="card" data-country="uk">
@@ -755,79 +824,6 @@
                             <div class="stream-info">
                                 <span class="data-point-count">Data points: <span id="dataPointCount">0</span></span>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!--Educational Resources Section-->
-    <section class="education-section" id="about">
-        <div class="content-container">
-            <header class="section-header">
-                <div class="section-icon"><i data-lucide="graduation-cap"></i></div>
-                <h2 class="section-title">Understanding Inflation</h2>
-                <p class="section-subtitle">Essential knowledge for navigating economic uncertainty</p>
-            </header>
-            
-            <div class="education-grid">
-                <div class="education-card">
-                    <div class="card-icon"><i data-lucide="trending-up"></i></div>
-                    <h3>What is Inflation?</h3>
-                    <p>Inflation is the rate at which the general level of prices for goods and services rises, eroding the purchasing power of money over time.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-                </div>
-                
-                <div class="education-card">
-                    <div class="card-icon"><i data-lucide="building-2"></i></div>
-                    <h3>Central Bank Roles</h3>
-                    <p>Central banks use monetary policy tools like interest rates and money supply to maintain price stability and economic growth.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-                </div>
-                
-                <div class="education-card">
-                    <div class="card-icon"><i data-lucide="coins"></i></div>
-                    <h3>Types of Inflation</h3>
-                    <p>Demand-pull, cost-push, and built-in inflation each have different causes and require different policy responses.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-                </div>
-                
-                <div class="education-card">
-                    <div class="card-icon"><i data-lucide="globe"></i></div>
-                    <h3>Global Impact</h3>
-                    <p>Inflation affects international trade, currency values, and cross-border economic relationships in complex ways.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-                </div>
-            </div>
-            
-            <div class="inflation-calculator">
-                <div class="calculator-header">
-                    <i data-lucide="calculator"></i>
-                    <h3>Inflation Impact Calculator</h3>
-                </div>
-                <div class="calculator-form">
-                    <div class="input-group">
-                        <label for="initial-amount">Initial Amount ($)</label>
-                        <input type="number" id="initial-amount" placeholder="10000" value="10000">
-                    </div>
-                    <div class="input-group">
-                        <label for="inflation-rate">Annual Inflation Rate (%)</label>
-                        <input type="number" id="inflation-rate" placeholder="3.5" value="3.5" step="0.1">
-                    </div>
-                    <div class="input-group">
-                        <label for="years">Years</label>
-                        <input type="number" id="years" placeholder="10" value="10">
-                    </div>
-                    <button class="calculate-btn">Calculate Impact</button>
-                    <div class="result-display">
-                        <div class="result-item">
-                            <span class="result-label">Future Value:</span>
-                            <span class="result-value" id="future-value">$14,105.99</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-label">Purchasing Power Lost:</span>
-                            <span class="result-value negative" id="power-lost">-29.1%</span>
                         </div>
                     </div>
                 </div>
